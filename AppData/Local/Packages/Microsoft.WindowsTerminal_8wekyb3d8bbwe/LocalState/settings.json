@@ -1,0 +1,204 @@
+{
+    "$help": "https://aka.ms/terminal-documentation",
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+    "actions": 
+    [
+        {
+            "command": 
+            {
+                "action": "globalSummon",
+                "desktop": "toCurrent",
+                "monitor": "toMouse",
+                "name": "_quake",
+                "toggleVisibility": true
+            },
+            "id": "User.MySummonQuake"
+        }
+    ],
+    "compatibility.enableUnfocusedAcrylic": true,
+    "copyFormatting": "none",
+    "copyOnSelect": false,
+    "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+    "keybindings": 
+    [
+        {
+            "id": "Terminal.DuplicatePaneAuto",
+            "keys": "alt+shift+d"
+        },
+        {
+            "id": "Terminal.CopyToClipboard",
+            "keys": "ctrl+c"
+        },
+        {
+            "id": "Terminal.FindText",
+            "keys": "ctrl+shift+f"
+        },
+        {
+            "id": "Terminal.PasteFromClipboard",
+            "keys": "ctrl+v"
+        }
+    ],
+    "newTabMenu": 
+    [
+        {
+            "type": "remainingProfiles"
+        }
+    ],
+    "profiles": 
+    {
+        "defaults": {},
+        "list": 
+        [
+            {
+                "colorScheme": "seoulbones_light",
+                "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "font": 
+                {
+                    "face": "JetBrainsMono Nerd Font",
+                    "size": 13
+                },
+                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "hidden": false,
+                "name": "Windows PowerShell",
+                "opacity": 65,
+                "useAcrylic": true
+            },
+            {
+                "commandline": "%SystemRoot%\\System32\\cmd.exe",
+                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+                "hidden": false,
+                "name": "\uba85\ub839 \ud504\ub86c\ud504\ud2b8"
+            },
+            {
+                "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+                "hidden": false,
+                "name": "Azure Cloud Shell",
+                "source": "Windows.Terminal.Azure"
+            },
+            {
+                "guid": "{641391a2-5572-5a0f-8ca1-e152075df681}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 2017",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{dc8490f5-3485-58be-9e92-c27d2449386e}",
+                "hidden": false,
+                "name": "Ubuntu",
+                "source": "Microsoft.WSL"
+            },
+            {
+                "colorScheme": "seoulbones_light",
+                "font": 
+                {
+                    "face": "Lilex Nerd Font",
+                    "size": 12
+                },
+                "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+                "hidden": false,
+                "name": "PowerShell",
+                "opacity": 100,
+                "source": "Windows.Terminal.PowershellCore",
+                "useAcrylic": false
+            }
+        ]
+    },
+    "schemes": 
+    [
+        {
+            "background": "#CBCCD1",
+            "black": "#0F0F14",
+            "blue": "#34548A",
+            "brightBlack": "#0F0F14",
+            "brightBlue": "#34548A",
+            "brightCyan": "#0F4B6E",
+            "brightGreen": "#33635C",
+            "brightPurple": "#5A4A78",
+            "brightRed": "#8C4351",
+            "brightWhite": "#828594",
+            "brightYellow": "#8F5E15",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#0F4B6E",
+            "foreground": "#4C505E",
+            "green": "#33635C",
+            "name": "TokyoNightLight",
+            "purple": "#5A4A78",
+            "red": "#8C4351",
+            "selectionBackground": "#FFFFFF",
+            "white": "#828594",
+            "yellow": "#8F5E15"
+        },
+        {
+            "background": "#E2E2E2",
+            "black": "#E2E2E2",
+            "blue": "#0084A3",
+            "brightBlack": "#BFBABB",
+            "brightBlue": "#006F89",
+            "brightCyan": "#006F70",
+            "brightGreen": "#487249",
+            "brightPurple": "#7F4C7E",
+            "brightRed": "#BE3C6D",
+            "brightWhite": "#777777",
+            "brightYellow": "#A76B48",
+            "cursorColor": "#555555",
+            "cyan": "#008586",
+            "foreground": "#555555",
+            "green": "#628562",
+            "name": "seoulbones_light",
+            "purple": "#896788",
+            "red": "#DC5284",
+            "selectionBackground": "#CCCCCC",
+            "white": "#555555",
+            "yellow": "#C48562"
+        },
+        {
+            "background": "#E1E2E7",
+            "black": "#E9E9ED",
+            "blue": "#2E7DE9",
+            "brightBlack": "#A1A6C5",
+            "brightBlue": "#2E7DE9",
+            "brightCyan": "#007197",
+            "brightGreen": "#587539",
+            "brightPurple": "#9854F1",
+            "brightRed": "#F52A65",
+            "brightWhite": "#3760BF",
+            "brightYellow": "#8C6C3E",
+            "cursorColor": "#3760BF",
+            "cyan": "#007197",
+            "foreground": "#3760BF",
+            "green": "#587539",
+            "name": "tokyonight-day",
+            "purple": "#9854F1",
+            "red": "#F52A65",
+            "selectionBackground": "#99A7DF",
+            "white": "#6172B0",
+            "yellow": "#8C6C3E"
+        },
+        {
+            "background": "#F0EDEC",
+            "black": "#F0EDEC",
+            "blue": "#286486",
+            "brightBlack": "#CFC1BA",
+            "brightBlue": "#1D5573",
+            "brightCyan": "#2B747C",
+            "brightGreen": "#3F5A22",
+            "brightPurple": "#7B3B70",
+            "brightRed": "#94253E",
+            "brightWhite": "#4F5E68",
+            "brightYellow": "#803D1C",
+            "cursorColor": "#2C363C",
+            "cyan": "#3B8992",
+            "foreground": "#2C363C",
+            "green": "#4F6C31",
+            "name": "zenbones",
+            "purple": "#88507D",
+            "red": "#A8334C",
+            "selectionBackground": "#CBD9E3",
+            "white": "#2C363C",
+            "yellow": "#944927"
+        }
+    ],
+    "theme": "light",
+    "themes": [],
+    "useAcrylicInTabRow": false
+}

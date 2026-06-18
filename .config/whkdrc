@@ -1,0 +1,28 @@
+.shell cmd
+
+alt + shift + t : wt
+ctrl + q        : komorebic close
+
+alt + j : komorebic focus left
+alt + p : komorebic focus right
+alt + l : komorebic focus up
+alt + k : komorebic focus down
+alt + h : komorebic manage
+alt + shift + h : komorebic retile
+
+alt + shift + j : komorebic move left
+alt + shift + p : komorebic move right
+alt + shift + l : komorebic move up
+alt + shift + k : komorebic move down
+
+alt + i         : komorebic toggle-monocle
+alt + y         : komorebic minimize
+alt + o         : komorebic flip-layout horizontal
+alt + u         : komorebic toggle-float
+
+alt + n         : komorebic cycle-workspace previous
+alt + oem_comma         : komorebic cycle-workspace next
+alt + shift + n : komorebic cycle-move-to-workspace previous
+alt + shift + oem_comma : komorebic cycle-move-to-workspace next
+
+alt + shift + r : komorebic reload-configuration

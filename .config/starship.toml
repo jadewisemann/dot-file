@@ -1,0 +1,341 @@
+'$schema' = 'https://starship.rs/config-schema.json'
+
+add_newline = false
+command_timeout = 1000
+
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$docker_context\
+$package\
+$nodejs\
+$python\
+$java\
+$golang\
+$rust\
+$php\
+$ruby\
+$dart\
+$cmd_duration\
+$status\
+$line_break\
+$battery\
+$time\
+$character\
+"""
+
+## FIRST LINE/ROW: Info & Status
+
+[username]
+format = " [╭─$user]($style)@"
+style_user = "bold #007197"
+style_root = "bold #f52a65"
+show_always = true
+
+[hostname]
+format = "[$hostname]($style) in "
+style = "bold #565a6e"
+trim_at = "-"
+ssh_only = false
+disabled = false
+ssh_symbol = " "
+
+[directory]
+format = "[ $path]($style)[$read_only]($read_only_style) "
+style = "bold #3d59a1"
+read_only = " "
+read_only_style = "bold #f52a65"
+truncation_length = 0
+truncate_to_repo = true
+truncation_symbol = ".../"
+
+[git_branch]
+format = "on [$symbol$branch]($style) "
+symbol = " "
+style = "bold #9854f1"
+
+[git_status]
+format = "[$all_status$ahead_behind]($style) "
+style = "bold #565a6e"
+conflicted = " "
+ahead = "⇡${count} "
+behind = "⇣${count} "
+diverged = "⇕⇡${ahead_count}⇣${behind_count} "
+up_to_date = ""
+untracked = "?${count} "
+stashed = " ${count} "
+modified = "!${count} "
+staged = "+${count} "
+renamed = "»${count} "
+deleted = "x${count} "
+
+[cmd_duration]
+min_time = 1
+format = "[󱎫 took $duration]($style) "
+style = "bold #8f5e15"
+disabled = false
+
+[status]
+symbol = "󰅙 "
+success_symbol = ""
+format = '[$symbol$status_common_meaning$status_signal_name$status_maybe_int]($style) '
+style = "bold #f52a65"
+map_symbol = true
+disabled = false
+
+## SECOND LINE/ROW: Prompt
+
+[battery]
+format = "[$symbol$percentage]($style) "
+full_symbol = " "
+charging_symbol = " "
+discharging_symbol = " "
+unknown_symbol = " "
+empty_symbol = " "
+disabled = true
+
+[[battery.display]]
+threshold = 15
+style = "bold #f52a65"
+charging_symbol = " "
+discharging_symbol = " "
+disabled = true
+
+[[battery.display]]
+threshold = 50
+style = "bold #8f5e15"
+charging_symbol = " "
+discharging_symbol = " "
+disabled = true
+
+[[battery.display]]
+threshold = 80
+style = "bold #385f0d"
+charging_symbol = " "
+discharging_symbol = " "
+disabled = true
+
+[time]
+format = "[󰥔 $time]($style)\n"
+time_format = "%T"
+style = "bold #565a6e"
+disabled = true
+
+[character]
+success_symbol = " [╰─λ](bold #007197)"
+error_symbol = " [╰─×](bold #f52a65)"
+
+## Cloud / Env
+
+[aws]
+symbol = " "
+style = "bold #965027"
+
+[conda]
+symbol = " "
+style = "bold #385f0d"
+
+[docker_context]
+symbol = " "
+format = "via [$symbol$context]($style) "
+style = "bold #007197"
+only_with_files = true
+detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
+detect_folders = []
+disabled = false
+
+## Languages / Runtimes
+
+[bun]
+symbol = " "
+format = "via [$symbol$version]($style) "
+style = "bold #965027"
+version_format = "${raw}"
+
+[c]
+symbol = " "
+format = "via [$symbol$name $version]($style) "
+style = "bold #3d59a1"
+version_format = "${raw}"
+
+[cmake]
+symbol = " "
+format = "via [$symbol$version]($style) "
+style = "bold #007197"
+version_format = "${raw}"
+
+[dart]
+symbol = " "
+format = "via [$symbol$version]($style) "
+style = "bold #007197"
+version_format = "${raw}"
+
+[deno]
+symbol = " "
+format = "via [$symbol$version]($style) "
+style = "bold #565a6e"
+version_format = "${raw}"
+
+[dotnet]
+symbol = "󰪮 "
+format = "via [$symbol$version]($style) "
+style = "bold #9854f1"
+version_format = "${raw}"
+
+[elixir]
+symbol = " "
+format = "via [$symbol$version]($style) "
+style = "bold #9854f1"
+version_format = "${raw}"
+
+[elm]
+symbol = " "
+format = "via [$symbol$version]($style) "
+style = "bold #007197"
+version_format = "${raw}"
+
+[golang]
+symbol = " "
+format = "via [$symbol$version]($style) "
+style = "bold #007197"
+version_format = "${raw}"
+
+[haskell]
+symbol = " "
+format = "via [$symbol$version]($style) "
+style = "bold #9854f1"
+version_format = "${raw}"
+
+[java]
+symbol = " "
+format = "via [$symbol$version]($style) "
+style = "bold #965027"
+version_format = "${raw}"
+
+[julia]
+symbol = " "
+format = "via [$symbol$version]($style) "
+style = "bold #9854f1"
+version_format = "${raw}"
+
+[kotlin]
+symbol = " "
+format = "via [$symbol$version]($style) "
+style = "bold #9854f1"
+version_format = "${raw}"
+
+[lua]
+symbol = " "
+format = "via [$symbol$version]($style) "
+style = "bold #3d59a1"
+version_format = "${raw}"
+
+[nodejs]
+symbol = " "
+format = "via [$symbol Node.js $version]($style) "
+style = "bold #385f0d"
+detect_files = ["package.json", ".node-version"]
+detect_folders = ["node_modules"]
+version_format = "${raw}"
+
+[nim]
+symbol = " "
+format = "via [$symbol$version]($style) "
+style = "bold #8f5e15"
+version_format = "${raw}"
+
+[package]
+symbol = " "
+format = "is [$symbol$version]($style) "
+style = "bold #8f5e15"
+version_format = "${raw}"
+
+[perl]
+symbol = " "
+format = "via [$symbol$version]($style) "
+style = "bold #3d59a1"
+version_format = "${raw}"
+
+[php]
+symbol = " "
+format = "via [$symbol$version]($style) "
+style = "bold #9854f1"
+version_format = "${raw}"
+
+[python]
+symbol = " "
+format = 'via [${symbol}python ${version} (\($virtualenv\) )]($style)'
+style = "bold #8f5e15"
+pyenv_prefix = "venv "
+python_binary = ["./venv/bin/python", "python", "python3", "python2"]
+detect_extensions = ["py"]
+version_format = "v${raw}"
+
+[rlang]
+symbol = "󰟔 "
+format = "via [$symbol$version]($style) "
+style = "bold #3d59a1"
+version_format = "${raw}"
+
+[ruby]
+symbol = " "
+format = "via [$symbol$version]($style) "
+style = "bold #f52a65"
+version_format = "${raw}"
+
+[rust]
+symbol = " "
+format = "via [$symbol$version]($style) "
+style = "bold #965027"
+version_format = "${raw}"
+
+[scala]
+symbol = " "
+format = "via [$symbol$version]($style) "
+style = "bold #f52a65"
+version_format = "${raw}"
+
+[swift]
+symbol = " "
+format = "via [$symbol$version]($style) "
+style = "bold #965027"
+version_format = "${raw}"
+
+## Shell / System
+
+[hg_branch]
+symbol = " "
+style = "bold #9854f1"
+
+[memory_usage]
+symbol = "󰍛 "
+style = "bold #565a6e"
+
+[nix_shell]
+symbol = " "
+style = "bold #007197"
+
+[shlvl]
+symbol = " "
+style = "bold #565a6e"
+
+## Disabled / Optional Modules
+
+[os]
+disabled = true
+format = "[$symbol$name]($style) "
+style = "bold #565a6e"
+
+[os.symbols]
+Windows = " "
+Ubuntu = " "
+Linux = " "
+Macos = " "
+Arch = " "
+Debian = " "
+Fedora = " "
+NixOS = " "
+Unknown = " "

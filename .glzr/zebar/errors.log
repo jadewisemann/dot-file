@@ -1,0 +1,4 @@
+[2m2026-06-13T05:07:17.140427Z[0m [31mERROR[0m [2mzebar::widget_factory[0m[2m:[0m Failed to start widget on startup: Failed to get window handle.
+
+Caused by:
+    the underlying handle is not available
