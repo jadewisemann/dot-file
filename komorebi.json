@@ -9,14 +9,14 @@
   "border_implementation": "Komorebi",
   "border_style": "System",
   "border_width": 6,
-  "border_offset": -1, 
+  "border_offset": -2, 
   "border_colours": {
-    "single": "#94e2d5",
-    "unfocused": "#45475a",
+    "unfocused": "#eeeeee",
+    "single": "#45475a",
     "floating": "#fab387",
     "stack": "#cba6f7"
   },  
-
+  "border_radius": 24,
   "animation": {
     "enabled": false,
     "fps": 60,
@@ -48,15 +48,7 @@
         { "name": "3", "layout": "BSP" },
         { "name": "4", "layout": "BSP" },
         { "name": "5", "layout": "BSP" },
-        { "name": "6", "layout": "BSP" },
-        { "name": "7", "layout": "BSP" },
-        { "name": "8", "layout": "BSP" },
-        { "name": "9", "layout": "BSP" }
-      ]
-    },
-    {
-      "workspaces": [
-        { "name": "0", "layout": "Rows" }
+        { "name": "6", "layout": "BSP" }
       ]
     }
   ]
