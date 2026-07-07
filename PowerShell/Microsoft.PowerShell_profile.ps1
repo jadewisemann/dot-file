@@ -43,3 +43,7 @@ Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
 Set-PSReadLineOption -Colors @{
     InlinePrediction = "$([char]0x1b)[38;5;238m" # 제안 텍스트를 진한 회색으로
 }
+
+# starship
+
+Invoke-Expression (&starship init powershell)
