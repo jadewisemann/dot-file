@@ -1,71 +1,83 @@
 {
   "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.41/schema.bar.json",
-  "font_family": "JetBrains Mono",
+  "font_family": "Lilex Pyeojin KRX",
+  "font_size": 14,
+  "transparency_alpha": 180,
+  "height": 42,
+  "margin": {
+    "horizontal": [20.0, 20.0],
+    "vertical": [20.0, 0.0]
+  },
   "theme": {
-    "palette": "Base16",
-    "name": "Ashes",
-    "accent": "Base0D"
+    "palette": "Custom",
+    "colours": {
+      "base_00": "#ececec",
+      "base_01": "#f4f4f4",
+      "base_02": "#dadada",
+      "base_03": "#adadad",
+      "base_04": "#6f6f6f",
+      "base_05": "#202020",
+      "base_06": "#101010",
+      "base_07": "#000000",
+
+      "base_08": "#c45f5f",
+      "base_09": "#b9783f",
+      "base_0a": "#a8872f",
+      "base_0b": "#6f9654",
+      "base_0c": "#4e948c",
+      "base_0d": "#487fa3",
+      "base_0e": "#8a63a8",
+      "base_0f": "#9c6042"
+    },
+    "accent": "Base0E",
+    "auto_select_fill": "Base02",
+    "auto_select_text": "Base05"
   },
   "left_widgets": [
     {
       "Komorebi": {
         "workspaces": {
           "enable": true,
-          "hide_empty_workspaces": false
+          "hide_empty_workspaces": true,
+          "display": "AllIconsAndText"
         },
-        "layout": {
-          "enable": true
-        },
-        "focused_window": {
+        "focused_container": {
           "enable": true,
-          "show_icon": true
+          "display": "Text"
         }
       }
     }
   ],
+  "center_widgets": [],
   "right_widgets": [
     {
-      "Update": {
-        "enable": true
-      }
-    },
-    {
-      "Media": {
-        "enable": false
-      }
-    },
-    {
-      "Storage": {
-        "enable": false
-      }
-    },
-    {
       "Memory": {
-        "enable": false
-      }
-    },
-    {
-      "Network": {
-        "enable": false,
-        "show_activity": true,
-        "show_total_activity": true
-      }
-    },
-    {
-      "Date": {
         "enable": true,
-        "format": "DayDateMonthYear"
+        "label_prefix": "Icon",
+        "auto_select_over": 80
+      }
+    },
+    {
+      "Cpu": {
+        "enable": true,
+        "label_prefix": "Icon",
+        "auto_select_over": 80
+      }
+    },
+    {
+      "Battery": {
+        "enable": true,
+        "label_prefix": "Icon",
+        "auto_select_under": 25
       }
     },
     {
       "Time": {
         "enable": true,
-        "format": "TwentyFourHour"
-      }
-    },
-    {
-      "Battery": {
-        "enable": true
+        "label_prefix": "None",
+        "format": {
+          "Custom": "%-m월 %-d일 (%a) %p %-I:%M"
+        }
       }
     }
   ]
