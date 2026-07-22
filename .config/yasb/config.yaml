@@ -5,7 +5,7 @@ debug: false
 komorebi:
   start_command: "komorebic start --whkd"
   stop_command: "komorebic stop"
-  reload_command: "komorebic stop && komorebic start"
+  reload_command: "komorebic stop && komorebic start --whkd"
 
 bars:
   status-bar:
@@ -41,6 +41,10 @@ widgets:
         label: "<span>\uf001</span> {title}"
         label_alt: "<span>\uf001</span> {artist}"
         hide_empty: true
+        callbacks:
+          on_left: "toggle_media_menu"
+          on_middle: "toggle_play_pause"
+          on_right: "toggle_label"
         max_field_size:
           label: 48
           label_alt: 48
@@ -55,6 +59,28 @@ widgets:
           next_track: "\ue893"
           play: "\ue768"
           pause: "\ue769"
+        media_menu:
+          blur: true
+          round_corners: true
+          round_corners_type: "normal"
+          border_color: "system"
+          alignment: "right"
+          direction: "down"
+          offset_top: 6
+          offset_left: 0
+          thumbnail_corner_radius: 8
+          thumbnail_size: 120
+          max_title_size: 60
+          max_artist_size: 30
+          show_source: true
+          show_volume_slider: true
+        media_menu_icons:
+          play: "\ue768"
+          pause: "\ue769"
+          prev_track: "\ue892"
+          next_track: "\ue893"
+          mute: "\ue994"
+          unmute: "\ue74f"
   clock:
       type: "yasb.clock.ClockWidget"
       options:

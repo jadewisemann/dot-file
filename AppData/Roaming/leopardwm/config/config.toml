@@ -1,0 +1,119 @@
+# LeopardWM Configuration
+# https://github.com/jcardama/LeopardWM
+
+[layout]
+gap = 10
+outer_gap_left = 10
+outer_gap_right = 10
+outer_gap_top = 10
+outer_gap_bottom = 10
+width_presets = [0.333, 0.5, 0.667]
+default_width_preset = 1
+height_presets = [0.333, 0.5, 0.667]
+centering_mode = "center"
+
+[appearance]
+
+[behavior]
+focus_new_windows = true
+track_focus_changes = true
+log_level = "info"
+focus_follows_mouse = false
+
+[hotkeys]
+"Ctrl+Alt+H" = "focus_left"
+"Ctrl+Alt+L" = "focus_right"
+"Ctrl+Alt+K" = "focus_up"
+"Ctrl+Alt+J" = "focus_down"
+"Ctrl+Alt+Home" = "focus_start"
+"Ctrl+Alt+End" = "focus_end"
+"Ctrl+Alt+Shift+H" = "move_column_left"
+"Ctrl+Alt+Shift+L" = "move_column_right"
+"Ctrl+Alt+Shift+Home" = "move_column_to_start"
+"Ctrl+Alt+Shift+End" = "move_column_to_end"
+"Ctrl+Alt+[" = "move_window_left"
+"Ctrl+Alt+]" = "move_window_right"
+"Ctrl+Alt+Shift+[" = "expel_to_left"
+"Ctrl+Alt+Shift+]" = "expel_to_right"
+"Ctrl+Alt+," = "consume_from_left"
+"Ctrl+Alt+." = "consume_from_right"
+"Ctrl+Alt+Shift+K" = "move_window_up"
+"Ctrl+Alt+Shift+J" = "move_window_down"
+"Ctrl+Alt+-" = "cycle_width_down"
+"Ctrl+Alt+=" = "cycle_width_up"
+"Ctrl+Alt+0" = "equalize_widths"
+"Ctrl+Alt+Shift+-" = "cycle_height_down"
+"Ctrl+Alt+Shift+=" = "cycle_height_up"
+"Ctrl+Alt+Shift+0" = "equalize_heights"
+"Ctrl+Alt+Win+," = "focus_monitor_left"
+"Ctrl+Alt+Win+." = "focus_monitor_right"
+"Ctrl+Alt+Win+Up" = "focus_monitor_up"
+"Ctrl+Alt+Win+Down" = "focus_monitor_down"
+"Ctrl+Alt+Win+Shift+," = "move_to_monitor_left"
+"Ctrl+Alt+Win+Shift+." = "move_to_monitor_right"
+"Ctrl+Alt+Win+Shift+Up" = "move_to_monitor_up"
+"Ctrl+Alt+Win+Shift+Down" = "move_to_monitor_down"
+"Ctrl+Alt+C" = "center_column"
+"Ctrl+Alt+M" = "maximize_column"
+"Ctrl+Alt+W" = "close_window"
+"Ctrl+Alt+F" = "toggle_floating"
+"Ctrl+Alt+Shift+F" = "toggle_fullscreen"
+"Ctrl+Alt+T" = "toggle_tabbed"
+"Ctrl+Alt+S" = "scratchpad_toggle"
+"Ctrl+Alt+Shift+S" = "scratchpad_stash"
+"Ctrl+Alt+Y" = "toggle_sticky"
+"Ctrl+Alt+P" = "toggle_pause"
+"Ctrl+Alt+R" = "refresh"
+"Ctrl+Alt+Shift+R" = "reload"
+"Win+Ctrl+Escape" = "panic_revert"
+"Ctrl+Alt+Space" = "toggle_overview"
+"Ctrl+Alt+Shift+Left" = "workspace_prev"
+"Ctrl+Alt+Shift+Right" = "workspace_next"
+"Ctrl+Alt+Shift+PageUp" = "move_to_workspace_prev"
+"Ctrl+Alt+Shift+PageDown" = "move_to_workspace_next"
+"Ctrl+Alt+1" = "switch_workspace_1"
+"Ctrl+Alt+2" = "switch_workspace_2"
+"Ctrl+Alt+3" = "switch_workspace_3"
+"Ctrl+Alt+4" = "switch_workspace_4"
+"Ctrl+Alt+5" = "switch_workspace_5"
+"Ctrl+Alt+6" = "switch_workspace_6"
+"Ctrl+Alt+7" = "switch_workspace_7"
+"Ctrl+Alt+8" = "switch_workspace_8"
+"Ctrl+Alt+9" = "switch_workspace_9"
+"Ctrl+Alt+Shift+1" = "move_to_workspace_1"
+"Ctrl+Alt+Shift+2" = "move_to_workspace_2"
+"Ctrl+Alt+Shift+3" = "move_to_workspace_3"
+"Ctrl+Alt+Shift+4" = "move_to_workspace_4"
+"Ctrl+Alt+Shift+5" = "move_to_workspace_5"
+"Ctrl+Alt+Shift+6" = "move_to_workspace_6"
+"Ctrl+Alt+Shift+7" = "move_to_workspace_7"
+"Ctrl+Alt+Shift+8" = "move_to_workspace_8"
+"Ctrl+Alt+Shift+9" = "move_to_workspace_9"
+
+[gestures]
+enabled = true
+swipe_left = "focus_left"
+swipe_right = "focus_right"
+swipe_up = "focus_up"
+swipe_down = "focus_down"
+
+[snap_hints]
+enabled = true
+duration_ms = 200
+opacity = 128
+
+[animation]
+layout_duration_ms = 150
+workspace_switch_duration_ms = 200
+scroll_duration_ms = 200
+overview_duration_ms = 150
+easing = "ease_out"
+reduce_motion_on_battery = true
+
+[overview]
+
+[workspaces]
+
+[[window_rules]]
+match_class = "MozillaDialogClass"
+corner_style = "square"

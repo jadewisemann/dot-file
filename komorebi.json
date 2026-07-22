@@ -18,13 +18,10 @@
   },  
 
   "animation": {
-    "enabled": false,
+    "enabled": true,
     "fps": 60,
-    "duration": 400,
-      "style": {
-        "movement":"EaseOutBack",
-        "transparency": "Linear"
-      }
+    "duration": 200,
+    "style": "EaseOutSine"
   },
 
   "stackbar": {
@@ -48,15 +45,25 @@
         { "name": "3", "layout": "BSP" },
         { "name": "4", "layout": "BSP" },
         { "name": "5", "layout": "BSP" },
-        { "name": "6", "layout": "BSP" },
-        { "name": "7", "layout": "BSP" },
-        { "name": "8", "layout": "BSP" },
-        { "name": "9", "layout": "BSP" }
+        { "name": "6", "layout": "BSP" }
       ]
     },
     {
       "workspaces": [
-        { "name": "0", "layout": "Rows" }
+        {
+          "name": "1",
+          "layout": "Scrolling",
+          "layout_options": {
+            "scrolling": {
+              "columns": 2
+            }
+          }
+        },
+        { "name": "2", "layout": "BSP" },
+        { "name": "3", "layout": "BSP" },
+        { "name": "4", "layout": "BSP" },
+        { "name": "5", "layout": "BSP" },
+        { "name": "6", "layout": "BSP" }
       ]
     }
   ]
