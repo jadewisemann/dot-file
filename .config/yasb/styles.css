@@ -39,8 +39,8 @@
 .yasb-bar {
 	padding: 0 6px;
 	margin: 0;
-    background-color: var(--base);
-    border-radius: 12px;
+    background-color: transparent;
+    border-radius: 0;
 }
 .widget {
 	padding: 0 8px;
@@ -52,49 +52,69 @@
 .widget .label.alt {
 	padding: 1px 8px 1px 8px;
 }
- .clock-widget .label {
-    padding-left:8px;
-}
 .komorebi-workspaces .widget-container {
-    margin-left: 0px;
-}
-.komorebi-workspaces .widget-container {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    border-left: none
+    background-color: rgba(17, 17, 27, 0.96);
+    border: 1px solid rgba(137, 180, 250, 0.22);
+    border-radius: 16px;
+    padding: 2px 5px;
 }
 .komorebi-workspaces .offline-status {
     color: var(--subtext1);
     font-size: 12px;
-    padding: 0 0px;
+    padding: 0 10px;
     font-weight: 600;
 }
 .komorebi-workspaces .ws-btn {
     border: none;
-    background-color: var(--surface1);
-    margin: 0 3px;
-    width: 10px;
-    height: 10px;
-    border-radius: 4px;
-    color: rgba(0, 0, 0, 0);
+    background-color: transparent;
+    color: var(--overlay1);
+    margin: 0 1px;
+    padding: 0 8px;
+    min-width: 24px;
+    min-height: 20px;
+    max-height: 20px;
+    border-radius: 10px;
+}
+.komorebi-workspaces .ws-btn.empty {
+    background-color: rgba(69, 71, 90, 0.72);
 }
 .komorebi-workspaces .ws-btn:hover {
-    color: rgba(0, 0, 0, 0);
-    background-color: var(--surface2);
+    color: var(--text);
+    background-color: rgba(255, 255, 255, 0.06);
 }
 .komorebi-workspaces .ws-btn.populated:hover {
-    color: rgba(0, 0, 0, 0);
-    background-color: var(--overlay1);
+    background-color: rgba(255, 255, 255, 0.06);
 }
 .komorebi-workspaces .ws-btn.populated {
-    color: rgba(0, 0, 0, 0);
-    background-color: var(--overlay0);
+    color: var(--subtext0);
+    background-color: rgba(88, 91, 112, 0.55);
 }
 .komorebi-workspaces .ws-btn.active {
-    color: rgba(0, 0, 0, 0);
-    background-color: var(--subtext0);
-    width: 28px;
-    height: 10px;
+    color: var(--base);
+    background-color: var(--blue);
+    min-width: 30px;
+    padding: 0 10px;
+}
+.komorebi-workspaces .ws-btn .label {
+    color: var(--overlay1);
+    font-family: "Lilex Pyeojin KRX";
+    font-size: 12px;
+    font-weight: 700;
+    padding: 0 2px;
+}
+.komorebi-workspaces .ws-btn.populated .label {
+    color: var(--subtext0);
+}
+.komorebi-workspaces .ws-btn.active .label {
+    color: var(--base);
+}
+.komorebi-workspaces .ws-btn .icon {
+    color: var(--subtext0);
+    font-size: 12px;
+    margin: 0 2px;
+}
+.komorebi-workspaces .ws-btn.active .icon {
+    color: var(--base);
 }
 .komorebi-active-layout {
     padding: 0 0px 0 0;
@@ -574,4 +594,104 @@ QToolTip {
 .komorebi-control-menu .footer .text {
     font-size: 12px;
     color: #6c7086;
+}
+
+/* Floating islands */
+.clock-widget {
+    padding: 0;
+}
+.clock-widget .widget-container {
+    background-color: rgba(30, 30, 46, 0.92);
+    border-radius: 16px;
+    min-height: 26px;
+    padding: 0 12px;
+}
+.clock-widget .label {
+    color: var(--subtext1);
+    font-family: "Lilex Pyeojin KRX";
+    font-size: 12px;
+    font-weight: 700;
+    padding: 0;
+}
+.clock-widget .icon {
+    color: var(--subtext1);
+    font-size: 11px;
+}
+
+.media-widget,
+.wifi-widget,
+.battery-widget,
+.volume-widget,
+.bluetooth-widget,
+.brightness-widget,
+.update-check-widget,
+.power-menu-widget {
+    background-color: rgba(30, 30, 46, 0.92);
+    min-height: 26px;
+    margin: 0;
+    border-radius: 0;
+}
+.media-widget {
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+    padding-left: 11px;
+}
+.wifi-widget {
+    padding: 0 7px 0 10px;
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+}
+.battery-widget {
+    padding: 0 7px;
+    border-radius: 0;
+}
+.volume-widget {
+    padding: 0 7px;
+    border-radius: 0;
+}
+.bluetooth-widget,
+.brightness-widget,
+.update-check-widget {
+    padding: 0 7px;
+    border-radius: 0;
+}
+.power-menu-widget {
+    padding: 0 10px 0 7px;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+.wifi-widget .label,
+.battery-widget .label,
+.volume-widget .label,
+.bluetooth-widget .label,
+.brightness-widget .label,
+.update-check-widget .label,
+.power-menu-widget .label {
+    color: var(--subtext1);
+    font-family: "Lilex Pyeojin KRX";
+    font-size: 12px;
+    font-weight: 700;
+    padding: 0;
+}
+.wifi-widget .icon,
+.battery-widget .icon,
+.volume-widget .icon {
+    color: var(--subtext1);
+    font-family: "Lilex Pyeojin KRX", "JetBrainsMono NFP", "Symbols Nerd Font Mono", "Segoe Fluent Icons";
+    font-size: 12px;
+    margin: 0 2px;
+    padding: 0;
+}
+.wifi-widget .widget-container,
+.battery-widget .widget-container,
+.volume-widget .widget-container,
+.bluetooth-widget .widget-container,
+.brightness-widget .widget-container,
+.update-check-widget .widget-container,
+.power-menu-widget .widget-container {
+    min-height: 26px;
+}
+.power-menu-widget .label {
+    font-family: "JetBrainsMono NFP", "Symbols Nerd Font Mono", "Segoe Fluent Icons";
+    line-height: 26px;
 }

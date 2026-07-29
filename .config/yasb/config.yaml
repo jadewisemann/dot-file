@@ -24,16 +24,16 @@ bars:
       windows_app_bar: true
     dimensions:
       width: "100%"
-      height: 34
+      height: 28
     padding:
-      top: 6
-      left: 8
-      bottom: 2
-      right: 8
+      top: 0
+      left: 18
+      bottom: 0
+      right: 18
     widgets:
-      left: ["komorebi_workspaces","komorebi_control", "active_window"]
-      center: ["clock"]
-      right: ["media", "volume", "bluetooth", "brightness", "update", "power_menu"]
+      left: ["clock"]
+      center: ["komorebi_workspaces"]
+      right: ["wifi", "battery", "volume", "bluetooth", "brightness", "update", "power_menu"]
 widgets:
   media:
       type: "yasb.media.MediaWidget"
@@ -84,20 +84,29 @@ widgets:
   clock:
       type: "yasb.clock.ClockWidget"
       options:
-        label: "{%I:%M %p}"
+        label: "{%Y-%m-%d  %H:%M}"
         label_alt: "{%a, %d %b %H:%M:%S}"
+        tooltip: false
         timezones: [] #Looking up time zone info from registry
   komorebi_workspaces:
       type: "komorebi.workspaces.WorkspaceWidget"
       options:
           label_offline: "\u26a1 Offline"
-          label_workspace_btn: "\udb81\udc3d"
-          label_workspace_active_btn: ""
-          label_workspace_populated_btn: "\udb81\udc3e"
+          label_workspace_btn: "{index}"
+          label_workspace_active_btn: "{index}"
+          label_workspace_populated_btn: "{index}"
           label_default_name: "{index}"
           label_zero_index: false
           hide_empty_workspaces: false
           hide_if_offline: false
+          app_icons:
+            enabled_populated: true
+            enabled_active: true
+            size: 12
+            max_icons: 2
+            hide_label: false
+            hide_duplicates: true
+            hide_floating: false
   komorebi_active_layout:
       type: "komorebi.active_layout.ActiveLayoutWidget"
       options:
@@ -146,8 +155,8 @@ widgets:
   volume:
       type: "yasb.volume.VolumeWidget"
       options:
-        label: "<span>{icon}</span> {level}"
-        label_alt: "{volume}"
+        label: "<span>\uf028</span> {level}"
+        label_alt: "<span>\uf028</span> {level}"
         tooltip: false
         icons:
           - "\ueee8"  # Icon for muted
@@ -243,8 +252,10 @@ widgets:
   wifi:
     type: "yasb.wifi.WifiWidget"
     options:
-      label: "<span>{wifi_icon}</span>"
+      label: "<span>\uf1eb</span>"
       label_alt: "{wifi_name}"
+      ethernet_label: "<span>\ueba9</span>"
+      ethernet_label_alt: "<span>\ueba9</span>"
       update_interval: 5000
       callbacks:
         on_left: "exec cmd.exe /c start ms-settings:network"
