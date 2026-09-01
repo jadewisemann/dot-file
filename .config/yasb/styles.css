@@ -342,7 +342,7 @@ QToolTip {
 	font-size: 16px;
 }
 .media-widget .btn.prev {
-    padding: 0 0px 0 0px;
+    padding: 0 0px 0 0px;	
     font-size: 12px;
 }
 .media-widget .btn.next {
