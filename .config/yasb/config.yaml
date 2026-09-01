@@ -24,16 +24,16 @@ bars:
       windows_app_bar: true
     dimensions:
       width: "100%"
-      height: 34
+      height: 40
     padding:
-      top: 6
-      left: 8
-      bottom: 2
-      right: 8
+      top: 0
+      left: 0
+      bottom: 0
+      right: 0
     widgets:
-      left: ["komorebi_workspaces","komorebi_control", "active_window"]
+      left: ["leopardwm_watcher", "leopardwm_layout"]
       center: ["clock"]
-      right: ["media", "volume", "bluetooth", "brightness", "update", "power_menu"]
+      right: ["wifi", "volume", "bluetooth", "brightness", "battery"]
 widgets:
   media:
       type: "yasb.media.MediaWidget"
@@ -58,20 +58,34 @@ widgets:
   clock:
       type: "yasb.clock.ClockWidget"
       options:
-        label: "{%I:%M %p}"
-        label_alt: "{%a, %d %b %H:%M:%S}"
+        label: "{%a %#I:%M %p}"
+        label_alt: "{%B %#d, %Y (%a) %I:%M %p}"
+        locale: "en_US.UTF-8"
+        tooltip: false
         timezones: [] #Looking up time zone info from registry
+        callbacks:
+          on_left: "do_nothing"
+          on_middle: "do_nothing"
+          on_right: "do_nothing"
   komorebi_workspaces:
       type: "komorebi.workspaces.WorkspaceWidget"
       options:
           label_offline: "\u26a1 Offline"
-          label_workspace_btn: "\udb81\udc3d"
-          label_workspace_active_btn: ""
-          label_workspace_populated_btn: "\udb81\udc3e"
-          label_default_name: "{index}"
+          label_workspace_btn: ""
+          label_workspace_active_btn: "{name}"
+          label_workspace_populated_btn: "{name}"
+          label_default_name: "{name}"
           label_zero_index: false
           hide_empty_workspaces: false
           hide_if_offline: false
+          app_icons:
+              enabled_populated: true
+              enabled_active: true
+              size: 16
+              max_icons: 99
+              hide_label: false
+              hide_duplicates: false
+              hide_floating: false
   komorebi_active_layout:
       type: "komorebi.active_layout.ActiveLayoutWidget"
       options:
@@ -95,6 +109,41 @@ widgets:
           on_left: 'next_layout'
           on_middle: 'toggle_monocle'
           on_right: 'prev_layout'
+  leopardwm_watcher:
+      type: "yasb.custom.CustomWidget"
+      options:
+        label: "{data}"
+        label_placeholder: ""
+        class_name: "leopardwm-watcher"
+        tooltip: false
+        exec_options:
+          run_cmd: "%USERPROFILE%\\.config\\yasb\\scripts\\leopardwm-workspace-watch.cmd"
+          run_once: true
+          return_format: "string"
+          hide_empty: true
+          use_shell: true
+        callbacks:
+          on_left: "do_nothing"
+          on_middle: "do_nothing"
+          on_right: "do_nothing"
+
+  leopardwm_layout:
+      type: "yasb.custom.CustomWidget"
+      options:
+        label: "{data}"
+        label_placeholder: "-"
+        class_name: "leopardwm-layout"
+        tooltip: false
+        exec_options:
+          run_cmd: "cmd.exe /d /c type %LOCALAPPDATA%\\yasb\\leopardwm-workspace.txt"
+          run_interval: 75
+          return_format: "string"
+          hide_empty: false
+          use_shell: false
+        callbacks:
+          on_left: "exec lwm.exe run"
+          on_middle: "do_nothing"
+          on_right: "do_nothing"
   komorebi_control:
       type: "komorebi.control.KomorebiControlWidget"
       options:
@@ -109,7 +158,7 @@ widgets:
         show_version: true
         komorebi_menu:
           blur: true
-          round_corners: true
+          round_corners: false
           round_corners_type: 'normal'
           border_color: 'System'
           alignment: 'left'
@@ -120,7 +169,7 @@ widgets:
   volume:
       type: "yasb.volume.VolumeWidget"
       options:
-        label: "<span>{icon}</span> {level}"
+        label: "<span>{icon}</span>"
         label_alt: "{volume}"
         tooltip: false
         icons:
@@ -131,7 +180,7 @@ widgets:
           - "\uf028"  # Icon for 61-100% volume
         audio_menu:
           blur: true
-          round_corners: true
+          round_corners: false
           round_corners_type: "normal"
           border_color: "system"
           alignment: "right"
@@ -177,16 +226,16 @@ widgets:
       options:
         label: "{win[title]}"
         label_alt: ""
-        label_no_window: ""
+        label_no_window: " "
         label_icon: false
         label_icon_size: 12
-        max_length: 36
+        max_length: 28
         max_length_ellipsis: "..."
         monitor_exclusive: true
   battery:
       type: "yasb.battery.BatteryWidget"
       options:
-        label: "<span>{icon}</span>{percent}%"
+        label: "<span>{icon}</span>"
         label_alt: "{icon} {percent}% | time: {time_remaining}"
         charging_options:
           icon_format: "{charging_icon}"
@@ -242,19 +291,19 @@ widgets:
     options:
       winget_update:
         enabled: true
-        label: "<span>\uf0ab</span>{count}"
+        label: "<span>\uf0ab</span> {count}"
         interval: 180
         exclude: []
       windows_update:
         enabled: false
-        label: "<span>\uf0ab</span>{count}"
+        label: "<span>\uf0ab</span> {count}"
         interval: 240
         exclude: []
   bluetooth:
     type: "yasb.bluetooth.BluetoothWidget"
     options:
       tooltip: false
-      label: "<span>{icon}</span> {device_count}"
+      label: "<span>{icon}</span>"
       label_alt: "{device_name}"
       label_no_device: "No devices connected"
       label_device_separator: ", "
@@ -277,7 +326,7 @@ widgets:
       label_alt: "Brightness {percent}%"
       tooltip: false
       scroll_step: 5
-      hide_unsupported: false
+      hide_unsupported: true
       brightness_toggle_level: [35, 75, 100]
       brightness_icons:
         - "\udb80\udcde"
@@ -286,7 +335,7 @@ widgets:
         - "\udb80\udce0"
       brightness_menu:
         blur: true
-        round_corners: true
+        round_corners: false
         round_corners_type: "normal"
         border_color: "System"
         alignment: "right"

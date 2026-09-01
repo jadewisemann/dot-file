@@ -1,4 +1,3 @@
-```powershell
 [CmdletBinding(SupportsShouldProcess = $true)]
 param()
 
@@ -83,11 +82,27 @@ function Install-Link {
         [string]$Source,
 
         [Parameter(Mandatory)]
-        [string]$Target
+        [string]$Target,
+
+        [ValidateSet('SymbolicLink', 'Junction')]
+        [string]$LinkType
     )
 
     if (-not (Test-Path -LiteralPath $Source)) {
         throw "Source not found: $Source"
+    }
+
+    $sourceItem = Get-Item `
+        -LiteralPath $Source `
+        -Force
+
+    if (-not $LinkType) {
+        $LinkType = if ($sourceItem.PSIsContainer) {
+            'Junction'
+        }
+        else {
+            'SymbolicLink'
+        }
     }
 
     New-ParentDirectory -Path $Target
@@ -98,7 +113,7 @@ function Install-Link {
             -Force
 
         $alreadyLinked = (
-            $item.LinkType -eq 'SymbolicLink' -and
+            $item.LinkType -eq $LinkType -and
             $item.Target -contains $Source
         )
 
@@ -124,7 +139,7 @@ function Install-Link {
 
     if ($PSCmdlet.ShouldProcess($Target, "Link to $Source")) {
         New-Item `
-            -ItemType SymbolicLink `
+            -ItemType $LinkType `
             -Path $Target `
             -Target $Source `
             -Force |
@@ -143,16 +158,23 @@ function Add-Link {
         [string]$Source,
 
         [Parameter(Mandatory)]
-        [string]$Target
+        [string]$Target,
+
+        [ValidateSet('SymbolicLink', 'Junction')]
+        [string]$LinkType
     )
 
     if (Test-Path -LiteralPath $Source) {
-        $Links.Add(
-            @{
-                Source = $Source
-                Target = $Target
-            }
-        )
+        $link = @{
+            Source = $Source
+            Target = $Target
+        }
+
+        if ($LinkType) {
+            $link.LinkType = $LinkType
+        }
+
+        $Links.Add($link)
     }
 }
 
@@ -178,7 +200,12 @@ function Add-FileLinks {
         -Recurse `
         -Force |
         Where-Object {
-            $_.Extension -ne '.log'
+            $_.Extension -ne '.log' -and
+            $_.FullName -notlike (
+                Join-Path `
+                    $repoRoot `
+                    'AppData\Roaming\leopardwm\config\*'
+            )
         } |
         ForEach-Object {
             $relativePath = $_.FullName
@@ -205,6 +232,13 @@ Add-FileLinks `
     -Links $links `
     -SourceRoot (Join-Path $repoRoot 'AppData') `
     -TargetRoot (Join-Path $homeDir 'AppData')
+
+# LeopardWM config directory: keep the repository as the source of truth.
+Add-Link `
+    -Links $links `
+    -Source (Join-Path $repoRoot 'AppData\Roaming\leopardwm\config') `
+    -Target (Join-Path $homeDir 'AppData\Roaming\leopardwm\config') `
+    -LinkType 'SymbolicLink'
 
 # Repository root files and directories
 Get-ChildItem `
@@ -253,4 +287,3 @@ Assert-SymbolicLinkSupport
 foreach ($link in $links) {
     Install-Link @link
 }
-```

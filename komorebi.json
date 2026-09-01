@@ -3,8 +3,8 @@
   "app_specific_configuration_path": "$Env:USERPROFILE/applications.json",
   "window_hiding_behaviour": "Cloak",
   "cross_monitor_move_behaviour": "Insert",
-  "default_workspace_padding": 10,
-  "default_container_padding": 10,
+  "default_workspace_padding": 4,
+  "default_container_padding": 4,
   "border": true,
   "border_implementation": "Komorebi",
   "border_style": "System",
@@ -18,11 +18,11 @@
   },  
   "border_radius": 24,
   "animation": {
-    "enabled": false,
-    "fps": 60,
-    "duration": 400,
+    "enabled": true,
+    "fps": 120,
+    "duration": 120,
       "style": {
-        "movement":"EaseOutBack",
+        "movement":"EaseOutSine",
         "transparency": "Linear"
       }
   },
@@ -37,6 +37,41 @@
       "background": "#1e1e2e",
       "font_family": "JetBrainsMono Nerd Font",
       "font_size": 14
+    }
+  },
+
+
+  "ignore_rules": [
+    {
+      "kind": "Class",
+      "id": "IME",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Class",
+      "id": "MSCTFIME UI",
+      "matching_strategy": "Equals"
+    }
+  ],
+
+  "manage_rules": [
+    [
+      {
+        "kind": "Exe",
+        "id": "claude.exe",
+        "matching_strategy": "Equals"
+      },
+      {
+        "kind": "Class",
+        "id": "Chrome_WidgetWin_1",
+        "matching_strategy": "Equals"
+      }
+    ]
+  ],
+
+  "layout_defaults": {
+    "Scrolling": {
+      "columns": 2
     }
   },
 

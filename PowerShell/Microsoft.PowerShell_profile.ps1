@@ -47,3 +47,4 @@ Set-PSReadLineOption -Colors @{
 # starship
 
 Invoke-Expression (&starship init powershell)
+Import-Module posh-git

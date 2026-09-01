@@ -1,28 +1,53 @@
 .shell cmd
 
-alt + shift + t : wt
 ctrl + q        : komorebic close
 
-alt + j : komorebic focus left
-alt + p : komorebic focus right
-alt + l : komorebic focus up
-alt + k : komorebic focus down
-alt + h : komorebic manage
-alt + shift + h : komorebic retile
+# h j k l p
+alt + h         : komorebic change-layout bsp
+alt + j         : komorebic focus left
+alt + k         : komorebic focus down
+alt + l         : komorebic focus up
+alt + p         : komorebic focus right
 
+alt + shift + h : komorebic change-layout scrolling
 alt + shift + j : komorebic move left
-alt + shift + p : komorebic move right
-alt + shift + l : komorebic move up
 alt + shift + k : komorebic move down
+alt + shift + l : komorebic move up
+alt + shift + p : komorebic move right
 
-alt + i         : komorebic toggle-monocle
+# y u i o
 alt + y         : komorebic minimize
-alt + o         : komorebic flip-layout horizontal
 alt + u         : komorebic toggle-float
+alt + i         : komorebic toggle-monocle
+alt + o         : komorebic flip-layout horizontal
 
-alt + n         : komorebic cycle-workspace previous
+# b n m , .
+alt + b                 : komorebic scrolling-layout-columns 3
+alt + shift + b         : komorebic scrolling-layout-columns 2
+alt + n                 : komorebic cycle-workspace previous
 alt + oem_comma         : komorebic cycle-workspace next
-alt + shift + n : komorebic cycle-move-to-workspace previous
+alt + shift + n         : komorebic cycle-move-to-workspace previous
 alt + shift + oem_comma : komorebic cycle-move-to-workspace next
 
-alt + shift + r : komorebic reload-configuration
+alt + shift + r         : komorebic reload-configuration
+
+
+ctrl + shift + alt + x  : komorebic focus-workspace 0
+ctrl + shift + alt + c  : komorebic focus-workspace 1
+ctrl + shift + alt + v  : komorebic focus-workspace 2
+ctrl + shift + alt + s  : komorebic focus-workspace 3
+ctrl + shift + alt + d  : komorebic focus-workspace 4
+ctrl + shift + alt + f  : komorebic focus-workspace 5
+ctrl + shift + alt + w  : komorebic focus-workspace 6
+ctrl + shift + alt + e  : komorebic focus-workspace 7
+ctrl + shift + alt + r  : komorebic focus-workspace 8
+
+ctrl + shift + alt + win + x : komorebic move-to-workspace 0
+ctrl + shift + alt + win + c : komorebic move-to-workspace 1
+ctrl + shift + alt + win + v : komorebic move-to-workspace 2
+ctrl + shift + alt + win + s : komorebic move-to-workspace 3
+ctrl + shift + alt + win + d : komorebic move-to-workspace 4
+ctrl + shift + alt + win + f : komorebic move-to-workspace 5
+ctrl + shift + alt + win + w : komorebic move-to-workspace 6
+ctrl + shift + alt + win + e : komorebic move-to-workspace 7
+ctrl + shift + alt + win + r : komorebic move-to-workspace 8

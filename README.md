@@ -41,10 +41,11 @@
 | `komorebi*.json`, `applications.json` | `%USERPROFILE%\...` |
 | `AppData\...` files | `%USERPROFILE%\AppData\...` |
 
-아래 명령은 위 대상 파일과 PowerShell 프로필을 모두 심볼릭 링크로 연결합니다.
+아래 명령은 위 대상 파일과 PowerShell 프로필을 심볼릭 링크로 연결합니다.
+LeopardWM의 `config` 디렉터리는 Windows 정션으로 연결합니다.
 
 ```powershell
 .\install.windows.ps1
 ```
 
-이미 대상 파일이 있으면 제거하고 저장소 파일을 가리키는 심볼릭 링크로 다시 만듭니다. 실행 중인 앱이 잡고 있을 수 있는 로그 파일은 링크 대상에서 제외합니다.
+이미 대상 파일이 있으면 제거하고 저장소를 가리키는 링크로 다시 만듭니다. 실행 중인 앱이 잡고 있을 수 있는 로그 파일은 링크 대상에서 제외합니다.
