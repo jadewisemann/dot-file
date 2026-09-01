@@ -30,12 +30,12 @@
             "keys": "ctrl+c"
         },
         {
-            "id": "Terminal.FindText",
-            "keys": "ctrl+shift+f"
-        },
-        {
             "id": "Terminal.PasteFromClipboard",
             "keys": "ctrl+v"
+        },
+        {
+            "id": "Terminal.FindText",
+            "keys": "ctrl+shift+f"
         }
     ],
     "newTabMenu": 
@@ -100,6 +100,12 @@
                 "opacity": 100,
                 "source": "Windows.Terminal.PowershellCore",
                 "useAcrylic": false
+            },
+            {
+                "guid": "{8c3a9b3a-f77c-52d0-a303-95cd79fc0c00}",
+                "hidden": false,
+                "name": "Ubuntu",
+                "source": "Microsoft.WSL"
             }
         ]
     },
