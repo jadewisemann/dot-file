@@ -1,0 +1,38 @@
+{
+  "Python Main Block": {
+    "prefix": "mmain",
+    "body": [
+      "def main():",
+      "    ${0:pass}",
+      "",
+      "if __name__ == \"__main__\":",
+      "    main()"
+    ],
+    "description": "Create a main block"
+  },
+  "Algorithm Template": {
+    "prefix": "sysi",
+    "body": [
+      "import sys",
+      "",
+      "input = sys.stdin.readline",
+      "",
+    ],
+    "description": "sys input"
+  },
+  "Fast Input Map": {
+    "prefix": "mi",
+    "body": [
+      "map(int, input().split())"
+    ],
+    "description": "map(int, input().split()) 자동 완성"
+  },
+  "Fast Input List": {
+    "prefix": "li",
+    "body": [
+      "list(map(int, input().split()))"
+    ],
+    "description": "list(map(int, input().split())) 자동 완성"
+  }
+}
+

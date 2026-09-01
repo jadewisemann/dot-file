@@ -1,0 +1,197 @@
+{
+  "editor.fontFamily": "'Lilex Nerd Font', 'Sarasa Fixed K', Interop, monospace",
+  "editor.lineHeight": 1.6,
+  "editor.fontLigatures": true,
+  "editor.fontWeight": "400",
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.renderWhitespace": "none",
+  "files.autoSave": "onFocusChange",
+
+  // === 2. UI 미니멀리즘 (Zen Mode) ===
+  "window.menuBarVisibility": "compact",
+  "window.title": " ",
+  "window.zoomPerWindow": false,
+  // "workbench.activityBar.location": "hidden",
+  "workbench.statusBar.visible": false,
+  "workbench.editor.showTabs": "none",
+  "workbench.layoutControl.enabled": false,
+  "workbench.startupEditor": "none",
+  "workbench.tree.renderIndentGuides": "none",
+  "editor.minimap.enabled": false,
+  "editor.scrollbar.horizontal": "hidden",
+  "editor.scrollbar.vertical": "hidden",
+  "editor.glyphMargin": false,
+  "editor.showFoldingControls": "never",
+
+  // === 3. 커서 및 스크롤 ===
+  "editor.cursorBlinking": "solid",
+  "editor.smoothScrolling": true,
+  "editor.cursorSmoothCaretAnimation": "explicit",
+  "editor.mouseWheelScrollSensitivity": 5,
+  "workbench.colorCustomizations": {
+    "editorCursor.foreground": "#ffff00",
+    "terminalCursor.foreground": "#ffff00"
+  },
+
+  // === 4. 터미널 설정 (Git Bash 기본) ===
+  "terminal.integrated.profiles.windows": {
+    "PowerShell": {
+      "path": "pwsh.exe",
+      "args": ["-ExecutionPolicy", "Bypass"]
+    },
+    "Command Prompt": {
+      "path": "C:\\WINDOWS\\System32\\cmd.exe",
+      "args": [],
+      "icon": "terminal-cmd"
+    },
+    "Git Bash": {
+      "source": "Git Bash",
+      "icon": "terminal-git-bash",
+      "path": "C:\\Program Files\\Git\\bin\\bash.exe",
+      "args": ["--login", "-i"]
+    }
+  },
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "terminal.integrated.fontFamily": "'Lilex Nerd Font','Lilex', 'Sarasa Fixed K', Interop, monospace",
+  "terminal.integrated.env.windows": {
+    "PYTHONIOENCODING": "utf-8",
+    "CHCP": "65001",
+    "PATH": "${env:PATH}"
+  },
+  "terminal.integrated.inheritEnv": true,
+  // === 5. 언어별 설정 (Python 등) ===
+  "[python]": {
+    "editor.tabSize": 4
+  },
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnFileMove.enabled": "never",
+
+  // === 6. 확장 프로그램 설정 ===
+  "errorLens.enabledDiagnosticLevels": ["warning", "info"],
+  "indentRainbow.colors": [
+    "rgba(90, 160, 152, 0.06)",
+    "rgba(109, 98, 143, 0.06)",
+    "rgba(55, 114, 160, 0.06)",
+    "rgba(151, 98, 130, 0.06)",
+    "rgba(173, 140, 77, 0.06)"
+  ],
+  "indentRainbow.errorColor": "rgba(255, 0, 0, 0.2)",
+  "code-runner.runInTerminal": true,
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "markdown-pdf.format": "A5",
+  "markdown-pdf.displayHeaderFooter": false,
+  "markdown-pdf.outputDirectoryRelativePathFile": true,
+
+  // === 7. 테마 및 색상 커스터마이징 ===
+  "workbench.colorTheme": "Zenbones Seoulbones Light Dim",
+  "workbench.iconTheme": "vscode-icons",
+  "disableNightMode.enabled": true,
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": ["comment", "punctuation.definition.comment"],
+        "settings": { "foreground": "#97744b" }
+      },
+      {
+        "scope": ["support.class.component"],
+        "settings": { "foreground": "#8700af" }
+      },
+      {
+        "scope": [
+          "entity.name.tag",
+          "entity.name.tag.html",
+          "entity.name.tag.js"
+        ],
+        "settings": { "foreground": "#d70087" }
+      },
+      {
+        "scope": ["entity.other.attribute-name"],
+        "settings": { "foreground": "#005f87" }
+      },
+      {
+        "scope": ["string.quoted", "string.template"],
+        "settings": { "foreground": "#5f8700" }
+      },
+      {
+        "scope": ["punctuation.definition.tag", "punctuation.section.embedded"],
+        "settings": { "foreground": "#0087af" }
+      }
+    ]
+  },
+
+  // === 8. 기타 시스템 설정 ===
+  "settingsSync.ignoredSettings": ["editor.fontSize", "window.zoomLevel"],
+  "security.workspace.trust.untrustedFiles": "open",
+  "git.openRepositoryInParentFolders": "always",
+  "custom-ui-style.stylesheet": {
+    ".quick-input-widget": "font-size: 16px !important",
+    ".quick-input-list .monaco-list-row": "font-size: 15px !important"
+  },
+  "explorer.confirmDelete": false,
+  "editor.aiStats.enabled": false,
+  "workbench.settings.showAISearchToggle": false,
+  "files.trimTrailingWhitespaceInRegexAndStrings": false,
+  "terminal.integrated.enableMultiLinePasteWarning": "never",
+  "chat.disableAIFeatures": true,
+  "python.analysis.aiHoverSummaries": false,
+
+  // django
+  "files.associations": {
+    "**/*.html": "html",
+    "**/templates/**/*.html": "django-html",
+    "**/templates/**/*": "django-txt",
+    "**/requirements{/**,*}.{txt,in}": "pip-requirements",
+    "*.html": "html"
+  },
+  "emmet.includeLanguages": {
+    "django-html": "html"
+  },
+  "[django-html]": {
+    "editor.autoClosingBrackets": "always"
+  },
+  "editor.defaultFormatter": "ms-python.black-formatter",
+  "explorer.fileNesting.patterns": {
+    "*.ts": "${capture}.js",
+    "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+    "*.jsx": "${capture}.js",
+    "*.tsx": "${capture}.ts",
+    "tsconfig.json": "tsconfig.*.json",
+    "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb, bun.lock",
+    "pubspec.yaml": "pubspec.lock,pubspec_overrides.yaml,.packages,.flutter-plugins,.flutter-plugins-dependencies,.metadata",
+    "*.dart": "${capture}.g.dart",
+    "*.sqlite": "${capture}.${extname}-*",
+    "*.db": "${capture}.${extname}-*",
+    "*.sqlite3": "${capture}.${extname}-*",
+    "*.db3": "${capture}.${extname}-*",
+    "*.sdb": "${capture}.${extname}-*",
+    "*.s3db": "${capture}.${extname}-*"
+  },
+  "editor.formatOnSave": true,
+  "python.formatting.provider": "black",
+  "git.blame.statusBarItem.enabled": false,
+  "terminal.integrated.fontSize": 15,
+  "window.commandCenter": false,
+  "workbench.editor.editorActionsLocation": "hidden",
+  "dbcode.connections": [],
+  "dbcode.resultLocation": "panel",
+  "dbcode.ai.inlineCompletion": false,
+  "workbench.activityBar.location": "top",
+  "explorer.confirmDragAndDrop": false,
+
+  // ==== Language ====
+  "[html]": {
+    "editor.tabSize": 2,
+    "editor.detectIndentation": false
+  },
+  "workbench.sideBar.location": "right",
+  "update.showReleaseNotes": false,
+  "dev.containers.executeInWSL": true,
+  "js/ts.experimental.useTsgo": true
+
+}

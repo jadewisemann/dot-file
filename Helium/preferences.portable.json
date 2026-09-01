@@ -1,0 +1,43 @@
+{
+  "bookmark_bar": {
+    "show_tab_groups": false
+  },
+  "browser": {
+    "theme": {
+      "is_grayscale2": true
+    }
+  },
+  "helium": {
+    "browser": {
+      "centered_location_bar": true,
+      "layout": 2,
+      "minimal_location_bar": true,
+      "new_tab_next_to_active": true,
+      "rounded_frame": false,
+      "zen_mode": false,
+      "zen_mode_sidebar_pinned": true,
+      "zen_mode_top_chrome_pinned": true
+    },
+    "completed_onboarding": true,
+    "services": {
+      "bangs": false,
+      "schema_version": 1,
+      "spellcheck_files": false,
+      "user_consented": true
+    }
+  },
+  "intl": {
+    "selected_languages": "ko-KR,ko,en-US,en"
+  },
+  "spellcheck": {
+    "dictionaries": [
+      "ko",
+      "en-US"
+    ],
+    "dictionary": ""
+  },
+  "vertical_tabs": {
+    "collapsed_state": true,
+    "uncollapsed_width": 200
+  }
+}

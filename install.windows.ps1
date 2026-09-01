@@ -1,6 +1,7 @@
-```powershell
 [CmdletBinding(SupportsShouldProcess = $true)]
-param()
+param(
+    [switch]$NoBackup
+)
 
 $ErrorActionPreference = 'Stop'
 
@@ -14,6 +15,37 @@ if (
 $repoRoot = Split-Path -Parent $PSCommandPath
 $homeDir = [Environment]::GetFolderPath('UserProfile')
 $documentsDir = [Environment]::GetFolderPath('MyDocuments')
+$backupRoot = Join-Path `
+    $homeDir `
+    ".dot-file-backups\$(Get-Date -Format 'yyyyMMdd-HHmmss')"
+$backupCreated = $false
+
+function Backup-Target {
+    param(
+        [Parameter(Mandatory)]
+        [string]$Target
+    )
+
+    if ($NoBackup) {
+        return
+    }
+
+    $relativePath = [System.IO.Path]::GetRelativePath(
+        $homeDir,
+        $Target
+    )
+    $backupTarget = Join-Path $backupRoot $relativePath
+
+    New-ParentDirectory -Path $backupTarget
+    Copy-Item `
+        -LiteralPath $Target `
+        -Destination $backupTarget `
+        -Recurse `
+        -Force
+
+    $script:backupCreated = $true
+    Write-Host "backup: $Target -> $backupTarget"
+}
 
 function Assert-SymbolicLinkSupport {
     $testRoot = Join-Path ([System.IO.Path]::GetTempPath()) "dot-file-link-test-$PID"
@@ -107,6 +139,15 @@ function Install-Link {
             return
         }
 
+        if (-not $PSCmdlet.ShouldProcess(
+            $Target,
+            "Replace with symbolic link to $Source"
+        )) {
+            return
+        }
+
+        Backup-Target -Target $Target
+
         if ($item.PSIsContainer) {
             Remove-Item `
                 -LiteralPath $Target `
@@ -122,21 +163,27 @@ function Install-Link {
         Write-Host "remove: $Target"
     }
 
-    if ($PSCmdlet.ShouldProcess($Target, "Link to $Source")) {
-        New-Item `
-            -ItemType SymbolicLink `
-            -Path $Target `
-            -Target $Source `
-            -Force |
-            Out-Null
-
-        Write-Host "link: $Target -> $Source"
+    if (
+        -not (Test-Path -LiteralPath $Target) -and
+        -not $PSCmdlet.ShouldProcess($Target, "Link to $Source")
+    ) {
+        return
     }
+
+    New-Item `
+        -ItemType SymbolicLink `
+        -Path $Target `
+        -Target $Source `
+        -Force |
+        Out-Null
+
+    Write-Host "link: $Target -> $Source"
 }
 
 function Add-Link {
     param(
         [Parameter(Mandatory)]
+        [AllowEmptyCollection()]
         [System.Collections.Generic.List[object]]$Links,
 
         [Parameter(Mandatory)]
@@ -159,6 +206,7 @@ function Add-Link {
 function Add-FileLinks {
     param(
         [Parameter(Mandatory)]
+        [AllowEmptyCollection()]
         [System.Collections.Generic.List[object]]$Links,
 
         [Parameter(Mandatory)]
@@ -181,9 +229,9 @@ function Add-FileLinks {
             $_.Extension -ne '.log'
         } |
         ForEach-Object {
-            $relativePath = $_.FullName
-                .Substring($SourceRoot.Length)
-                .TrimStart('\', '/')
+            $relativePath = $_.FullName.Substring(
+                $SourceRoot.Length
+            ).TrimStart('\', '/')
 
             Add-Link `
                 -Links $Links `
@@ -206,33 +254,23 @@ Add-FileLinks `
     -SourceRoot (Join-Path $repoRoot 'AppData') `
     -TargetRoot (Join-Path $homeDir 'AppData')
 
-# Repository root files and directories
-Get-ChildItem `
-    -LiteralPath $repoRoot `
-    -Force |
-    Where-Object {
-        $_.Name -notin @(
-            '.config'
-            'AppData'
-            'PowerShell'
-            'README.md'
-            'install.windows.ps1'
-        )
-    } |
-    ForEach-Object {
-        if ($_.PSIsContainer) {
-            Add-FileLinks `
-                -Links $links `
-                -SourceRoot $_.FullName `
-                -TargetRoot (Join-Path $homeDir $_.Name)
-        }
-        else {
-            Add-Link `
-                -Links $links `
-                -Source $_.FullName `
-                -Target (Join-Path $homeDir $_.Name)
-        }
-    }
+# ~/.glzr
+Add-FileLinks `
+    -Links $links `
+    -SourceRoot (Join-Path $repoRoot '.glzr') `
+    -TargetRoot (Join-Path $homeDir '.glzr')
+
+# Repository root configuration files
+foreach ($fileName in @(
+    'applications.json'
+    'komorebi.bar.json'
+    'komorebi.json'
+)) {
+    Add-Link `
+        -Links $links `
+        -Source (Join-Path $repoRoot $fileName) `
+        -Target (Join-Path $homeDir $fileName)
+}
 
 # PowerShell 7 profile
 $powerShellProfile = Join-Path `
@@ -253,4 +291,7 @@ Assert-SymbolicLinkSupport
 foreach ($link in $links) {
     Install-Link @link
 }
-```
+
+if ($backupCreated) {
+    Write-Host "backup root: $backupRoot"
+}

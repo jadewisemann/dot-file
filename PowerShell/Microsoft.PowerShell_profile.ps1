@@ -1,49 +1,86 @@
-# 1. lsd 관련 함수 정의
+# 새로 설치된 앱 경로가 현재 프로세스에 아직 반영되지 않은 경우 보완합니다.
+$extraCommandPaths = @()
+$extraCommandPaths += (
+    [Environment]::GetEnvironmentVariable('Path', 'Machine') -split ';'
+)
+$extraCommandPaths += (
+    [Environment]::GetEnvironmentVariable('Path', 'User') -split ';'
+)
+$extraCommandPaths += @(
+    (Join-Path $env:LOCALAPPDATA 'Microsoft\WinGet\Links')
+    (Join-Path $env:LOCALAPPDATA 'Microsoft\WindowsApps')
+)
+$currentPathEntries = $env:Path -split ';'
+
+foreach ($commandPath in ($extraCommandPaths | Select-Object -Unique)) {
+    $commandPath = [Environment]::ExpandEnvironmentVariables(
+        $commandPath
+    )
+
+    if (
+        $commandPath -and
+        (Test-Path -LiteralPath $commandPath) -and
+        $commandPath -notin $currentPathEntries
+    ) {
+        $env:Path = "$env:Path;$commandPath"
+    }
+}
+
+# lsd
 function l { lsd -l $args }
 function la { lsd -a $args }
 function lla { lsd -la $args }
 function lt { lsd --tree $args }
 
-# 2. ls 명령어를 lsd로 대체
 if (Get-Command lsd -ErrorAction SilentlyContinue) {
     Set-Alias -Name ls -Value lsd -Option AllScope -Force
-} else {
-    Write-Host "경고: lsd가 설치되어 있지 않습니다." -ForegroundColor Yellow
 }
 
-# 3. zoxide 초기화
+# zoxide
 if (Get-Command zoxide -ErrorAction SilentlyContinue) {
     Invoke-Expression (& { (zoxide init powershell | Out-String) })
 }
 
-# ==========================================
-# 4. fzf (PSFzf) 및 PSReadLine 최적화 설정
-# ==========================================
-Import-Module PSReadLine
-Import-Module PSFzf
-Import-Module CompletionPredictor
+# fzf, PSFzf, CompletionPredictor, PSReadLine
+Import-Module PSReadLine -ErrorAction SilentlyContinue
 
+if (Get-Command fzf -ErrorAction SilentlyContinue) {
+    Import-Module PSFzf -ErrorAction SilentlyContinue
+}
+
+Import-Module CompletionPredictor -ErrorAction SilentlyContinue
 
 $env:FZF_DEFAULT_OPTS = "--bind 'double-click:accept' --height 40% --layout=reverse"
 
-# [핵심 1] 단축 명령어(Alias) 활성화
-# fkill(프로세스 종료), fe(파일 에디터로 열기), fd(폴더 퍼지 검색 후 이동), fh(히스토리 실행)
-Set-PsFzfOption -EnableAliasFuzzyKillProcess -EnableAliasFuzzyEdit -EnableAliasFuzzySetLocation -EnableAliasFuzzyHistory
+if (Get-Command Set-PsFzfOption -ErrorAction SilentlyContinue) {
+    Set-PsFzfOption `
+        -EnableAliasFuzzyKillProcess `
+        -EnableAliasFuzzyEdit `
+        -EnableAliasFuzzySetLocation `
+        -EnableAliasFuzzyHistory
+    Set-PsFzfOption `
+        -PSReadlineChordProvider 'Ctrl+t' `
+        -PSReadlineChordReverseHistory 'Ctrl+r'
+}
 
-# [핵심 2] fzf 핵심 단축키 바인딩
-# - Ctrl+t : 파일/폴더 경로 퍼지 검색 및 자동 완성
-# - Ctrl+r : 명령어 기록(History) 역방향 퍼지 검색
-# (Alt+c 와 Alt+a 는 PSFzf 모듈 로드 시 기본 할당되므로 별도 옵션 지정 불필요)
-Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
-
-Set-PSReadLineOption -PredictionSource HistoryAndPlugin
-# Set-PSReadLineOption -PredictionSource None
-Set-PSReadLineOption -PredictionViewStyle ListView
-Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
-Set-PSReadLineOption -Colors @{
-    InlinePrediction = "$([char]0x1b)[38;5;238m" # 제안 텍스트를 진한 회색으로
+if (
+    (Get-Module PSReadLine) -and
+    $Host.Name -eq 'ConsoleHost' -and
+    -not [Console]::IsOutputRedirected
+) {
+    Set-PSReadLineOption -PredictionSource HistoryAndPlugin
+    Set-PSReadLineOption -PredictionViewStyle ListView
+    Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
+    Set-PSReadLineOption -Colors @{
+        InlinePrediction = "$([char]0x1b)[38;5;238m"
+    }
 }
 
 # starship
-
-Invoke-Expression (&starship init powershell)
+if (
+    (Get-Command starship -ErrorAction SilentlyContinue) -and
+    $env:TERM -ne 'dumb' -and
+    -not [Console]::IsOutputRedirected
+) {
+    Invoke-Expression (&starship init powershell)
+}

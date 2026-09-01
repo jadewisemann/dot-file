@@ -5,7 +5,7 @@ debug: false
 komorebi:
   start_command: "komorebic start --whkd"
   stop_command: "komorebic stop"
-  reload_command: "komorebic stop && komorebic start --whkd"
+  reload_command: "komorebic stop && komorebic start"
 
 bars:
   status-bar:
@@ -24,16 +24,16 @@ bars:
       windows_app_bar: true
     dimensions:
       width: "100%"
-      height: 28
+      height: 34
     padding:
-      top: 0
-      left: 18
-      bottom: 0
-      right: 18
+      top: 6
+      left: 8
+      bottom: 2
+      right: 8
     widgets:
-      left: ["clock"]
-      center: ["komorebi_workspaces"]
-      right: ["claude_usage", "wifi", "battery", "volume", "bluetooth", "brightness", "update", "control_center", "power_menu"]
+      left: ["komorebi_workspaces","komorebi_control", "active_window"]
+      center: ["clock"]
+      right: ["media", "volume", "bluetooth", "brightness", "update", "power_menu"]
 widgets:
   media:
       type: "yasb.media.MediaWidget"
@@ -41,10 +41,6 @@ widgets:
         label: "<span>\uf001</span> {title}"
         label_alt: "<span>\uf001</span> {artist}"
         hide_empty: true
-        callbacks:
-          on_left: "toggle_media_menu"
-          on_middle: "toggle_play_pause"
-          on_right: "toggle_label"
         max_field_size:
           label: 48
           label_alt: 48
@@ -59,95 +55,23 @@ widgets:
           next_track: "\ue893"
           play: "\ue768"
           pause: "\ue769"
-        media_menu:
-          blur: true
-          round_corners: true
-          round_corners_type: "normal"
-          border_color: "system"
-          alignment: "right"
-          direction: "down"
-          offset_top: 6
-          offset_left: 0
-          thumbnail_corner_radius: 8
-          thumbnail_size: 120
-          max_title_size: 60
-          max_artist_size: 30
-          show_source: true
-          show_volume_slider: true
-        media_menu_icons:
-          play: "\ue768"
-          pause: "\ue769"
-          prev_track: "\ue892"
-          next_track: "\ue893"
-          mute: "\ue994"
-          unmute: "\ue74f"
   clock:
       type: "yasb.clock.ClockWidget"
       options:
-        label: "{%Y-%m-%d  %H:%M}"
+        label: "{%I:%M %p}"
         label_alt: "{%a, %d %b %H:%M:%S}"
-        tooltip: false
         timezones: [] #Looking up time zone info from registry
-        callbacks:
-          on_left: "do_nothing"
-          on_middle: "do_nothing"
-          on_right: "do_nothing"
-  claude_usage:
-      type: "yasb.claude_usage.ClaudeUsageWidget"
-      options:
-        label: "<span>\udb81\udea9</span> {five_hour}%"
-        label_alt: "Claude 7d {seven_day}%"
-        update_interval: 60
-        cache_ttl: 120
-        tooltip: false
-        callbacks:
-          on_left: "toggle_menu"
-          on_middle: "refresh"
-          on_right: "toggle_label"
-        menu:
-          blur: true
-          round_corners: true
-          round_corners_type: "normal"
-          border_color: "System"
-          alignment: "right"
-          direction: "down"
-          offset_top: 6
-          offset_left: 0
-  control_center:
-      type: "yasb.control_center.ControlCenterWidget"
-      options:
-        label: "<span>\ue713</span>"
-        tooltip: false
-        popup:
-          blur: true
-          round_corners: true
-          round_corners_type: "normal"
-          border_color: "System"
-          alignment: "right"
-          direction: "down"
-          offset_top: 6
-          offset_left: 0
-        callbacks:
-          on_left: "toggle_menu"
   komorebi_workspaces:
       type: "komorebi.workspaces.WorkspaceWidget"
       options:
           label_offline: "\u26a1 Offline"
-          label_workspace_btn: "{index}"
-          label_workspace_active_btn: "{index}"
-          label_workspace_populated_btn: "{index}"
+          label_workspace_btn: "\udb81\udc3d"
+          label_workspace_active_btn: ""
+          label_workspace_populated_btn: "\udb81\udc3e"
           label_default_name: "{index}"
           label_zero_index: false
           hide_empty_workspaces: false
           hide_if_offline: false
-          app_icons:
-            enabled_populated: true
-            enabled_active: true
-            size: 12
-            max_icons: 2
-            hide_label: false
-            hide_duplicates: true
-            hide_floating: false
   komorebi_active_layout:
       type: "komorebi.active_layout.ActiveLayoutWidget"
       options:
@@ -196,8 +120,8 @@ widgets:
   volume:
       type: "yasb.volume.VolumeWidget"
       options:
-        label: "<span>\uf028</span> {level}"
-        label_alt: "<span>\uf028</span> {level}"
+        label: "<span>{icon}</span> {level}"
+        label_alt: "{volume}"
         tooltip: false
         icons:
           - "\ueee8"  # Icon for muted
@@ -293,10 +217,8 @@ widgets:
   wifi:
     type: "yasb.wifi.WifiWidget"
     options:
-      label: "<span>\uf1eb</span>"
+      label: "<span>{wifi_icon}</span>"
       label_alt: "{wifi_name}"
-      ethernet_label: "<span>\ueba9</span>"
-      ethernet_label_alt: "<span>\ueba9</span>"
       update_interval: 5000
       callbacks:
         on_left: "exec cmd.exe /c start ms-settings:network"

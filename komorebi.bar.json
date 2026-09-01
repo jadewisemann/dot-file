@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.41/schema.bar.json",
-  "font_family": "Lilex Pyeojin KRX",
+  "font_family": "Lilex Nerd Font",
   "font_size": 14,
   "transparency_alpha": 180,
   "height": 42,
