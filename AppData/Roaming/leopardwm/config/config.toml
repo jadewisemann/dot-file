@@ -1,119 +1,213 @@
-# LeopardWM Configuration
-# https://github.com/jcardama/LeopardWM
-
 [layout]
-gap = 10
-outer_gap_left = 10
-outer_gap_right = 10
-outer_gap_top = 10
-outer_gap_bottom = 10
-width_presets = [0.333, 0.5, 0.667]
+gap = 30
+
+outer_gap_left   = 20
+outer_gap_right  = 20
+outer_gap_top    = 20
+outer_gap_bottom = 20
+
+width_presets = [0.5, 0.667, 1.0]
 default_width_preset = 1
-height_presets = [0.333, 0.5, 0.667]
-centering_mode = "center"
+
+height_presets = [0.5, 1]
+
+# Centering mode: "center", "just_in_view", or "on_overflow"
+centering_mode = "just_in_view"
+
 
 [appearance]
+active_border = true
+active_border_color = "00D9FF"
+active_border_width = 5
+active_border_position = "outside"
+
 
 [behavior]
 focus_new_windows = true
 track_focus_changes = true
-log_level = "info"
 focus_follows_mouse = false
 
+log_level = "info"
+
+
+# Disable Windows 11 Snap Layouts for tiled windows.
+# disable_snap_layouts = false
+
+# Check GitHub Releases once a day for updates.
+# check_for_updates = false
+
+# Animate Chromium / Electron / Mozilla / Cascadia / .NET windows using
+# DWM thumbnails instead of repeated SetWindowPos calls.
+# swap_chain_ghost_animation = false
+
+# Where newly opened windows go:
+# - "new_column": create a column to the right
+# - "in_column": stack into the focused column
+# new_window_placement = "new_column"
+
+# Hide taskbar buttons for windows not visible in the current view.
+# hide_offscreen_taskbar_buttons = true
+
+# Wrap vertical focus and move commands into adjacent workspaces.
+# workspace_edge_wrap = false
+
+# Move the mouse cursor onto the newly focused window.
+# mouse_follows_focus = false
+
+# Carry fullscreen mode to the next focused window.
+# fullscreen_follows_focus = true
+
+
 [hotkeys]
-"Ctrl+Alt+H" = "focus_left"
-"Ctrl+Alt+L" = "focus_right"
-"Ctrl+Alt+K" = "focus_up"
-"Ctrl+Alt+J" = "focus_down"
-"Ctrl+Alt+Home" = "focus_start"
-"Ctrl+Alt+End" = "focus_end"
-"Ctrl+Alt+Shift+H" = "move_column_left"
-"Ctrl+Alt+Shift+L" = "move_column_right"
-"Ctrl+Alt+Shift+Home" = "move_column_to_start"
-"Ctrl+Alt+Shift+End" = "move_column_to_end"
-"Ctrl+Alt+[" = "move_window_left"
-"Ctrl+Alt+]" = "move_window_right"
-"Ctrl+Alt+Shift+[" = "expel_to_left"
-"Ctrl+Alt+Shift+]" = "expel_to_right"
-"Ctrl+Alt+," = "consume_from_left"
-"Ctrl+Alt+." = "consume_from_right"
-"Ctrl+Alt+Shift+K" = "move_window_up"
-"Ctrl+Alt+Shift+J" = "move_window_down"
-"Ctrl+Alt+-" = "cycle_width_down"
-"Ctrl+Alt+=" = "cycle_width_up"
-"Ctrl+Alt+0" = "equalize_widths"
-"Ctrl+Alt+Shift+-" = "cycle_height_down"
-"Ctrl+Alt+Shift+=" = "cycle_height_up"
-"Ctrl+Alt+Shift+0" = "equalize_heights"
-"Ctrl+Alt+Win+," = "focus_monitor_left"
-"Ctrl+Alt+Win+." = "focus_monitor_right"
-"Ctrl+Alt+Win+Up" = "focus_monitor_up"
-"Ctrl+Alt+Win+Down" = "focus_monitor_down"
-"Ctrl+Alt+Win+Shift+," = "move_to_monitor_left"
-"Ctrl+Alt+Win+Shift+." = "move_to_monitor_right"
-"Ctrl+Alt+Win+Shift+Up" = "move_to_monitor_up"
-"Ctrl+Alt+Win+Shift+Down" = "move_to_monitor_down"
-"Ctrl+Alt+C" = "center_column"
-"Ctrl+Alt+M" = "maximize_column"
-"Ctrl+Alt+W" = "close_window"
-"Ctrl+Alt+F" = "toggle_floating"
-"Ctrl+Alt+Shift+F" = "toggle_fullscreen"
-"Ctrl+Alt+T" = "toggle_tabbed"
-"Ctrl+Alt+S" = "scratchpad_toggle"
-"Ctrl+Alt+Shift+S" = "scratchpad_stash"
-"Ctrl+Alt+Y" = "toggle_sticky"
-"Ctrl+Alt+P" = "toggle_pause"
-"Ctrl+Alt+R" = "refresh"
-"Ctrl+Alt+Shift+R" = "reload"
-"Win+Ctrl+Escape" = "panic_revert"
-"Ctrl+Alt+Space" = "toggle_overview"
-"Ctrl+Alt+Shift+Left" = "workspace_prev"
-"Ctrl+Alt+Shift+Right" = "workspace_next"
-"Ctrl+Alt+Shift+PageUp" = "move_to_workspace_prev"
-"Ctrl+Alt+Shift+PageDown" = "move_to_workspace_next"
-"Ctrl+Alt+1" = "switch_workspace_1"
-"Ctrl+Alt+2" = "switch_workspace_2"
-"Ctrl+Alt+3" = "switch_workspace_3"
-"Ctrl+Alt+4" = "switch_workspace_4"
-"Ctrl+Alt+5" = "switch_workspace_5"
-"Ctrl+Alt+6" = "switch_workspace_6"
-"Ctrl+Alt+7" = "switch_workspace_7"
-"Ctrl+Alt+8" = "switch_workspace_8"
-"Ctrl+Alt+9" = "switch_workspace_9"
-"Ctrl+Alt+Shift+1" = "move_to_workspace_1"
-"Ctrl+Alt+Shift+2" = "move_to_workspace_2"
-"Ctrl+Alt+Shift+3" = "move_to_workspace_3"
-"Ctrl+Alt+Shift+4" = "move_to_workspace_4"
-"Ctrl+Alt+Shift+5" = "move_to_workspace_5"
-"Ctrl+Alt+Shift+6" = "move_to_workspace_6"
-"Ctrl+Alt+Shift+7" = "move_to_workspace_7"
-"Ctrl+Alt+Shift+8" = "move_to_workspace_8"
-"Ctrl+Alt+Shift+9" = "move_to_workspace_9"
+
+# focus/ move / size 
+"Alt                + J" = "focus_left"
+"Alt                + K" = "focus_down"
+"Alt                + L" = "focus_up"
+"Alt                + P" = "focus_right"
+
+"Alt + Shift        + J" = "move_window_left"
+"Alt + Shift        + K" = "move_window_down"
+"Alt + Shift        + L" = "move_window_up"
+"Alt + Shift        + P" = "move_window_right"
+
+"Alt         + Ctrl + J" = "cycle_width_down"
+"Alt         + Ctrl + K" = "cycle_height_down"
+"Alt         + Ctrl + L" = "cycle_height_up"
+"Alt         + Ctrl + P" = "cycle_width_up"
+
+# column
+"Alt                + N" = "move_column_left"
+"Alt                + ." = "move_column_right"
+"Alt + Shift        + N" = "expel_to_left"
+"Alt + Shift        + ." = "expel_to_right"
+"Alt         + Ctrl + N" = "consume_from_left"
+"Alt         + Ctrl + ." = "consume_from_right"
+
+"Alt                + B" = "center_column"
+"Alt + Shift        + B" = "maximize_column"
+
+# window
+"Alt                + Y" = "scratchpad_toggle"
+"Alt + Shift        + Y" = "scratchpad_stash"
+"Alt                + U" = "toggle_floating"
+"Alt                + I" = "toggle_fullscreen"
+"Alt                + O" = "toggle_tabbed"
+"Alt                + /" = "toggle_sticky"
+
+# monitor focus move
+"Alt + Shift        + U" = "focus_monitor_left"
+"Alt + Shift        + I" = "focus_monitor_right"
+"Alt + Shift        + O" = "focus_monitor_up"
+"Alt + Shift        + /" = "focus_monitor_down"
+
+"Alt         + Ctrl + U" = "move_to_monitor_left"
+"Alt         + Ctrl + I" = "move_to_monitor_right"
+"Alt         + Ctrl + O" = "move_to_monitor_up"
+"Alt         + Ctrl + /" = "move_to_monitor_down"
+
+# Workspace
+"Alt                + H" = "toggle_overview"
+"Alt                + M" = "workspace_next"
+"Alt                + ," = "workspace_prev"
+"Alt + Shift        + M" = "move_to_workspace_next"
+"Alt + Shift        + ," = "move_to_workspace_prev"
+
+# Sessiona
+# "Ctrl+Alt+P" = "toggle_pause"
+# "Ctrl+Alt+R" = "refresh"
+# "Ctrl+Alt+Shift+R" = "reload"
+# "Win+Ctrl+Escape" = "panic_revert"
+
+# Switch to workspace
+# "Ctrl+Alt+1" = "switch_workspace_1"
+# "Ctrl+Alt+2" = "switch_workspace_2"
+# "Ctrl+Alt+3" = "switch_workspace_3"
+# "Ctrl+Alt+4" = "switch_workspace_4"
+# "Ctrl+Alt+5" = "switch_workspace_5"
+# "Ctrl+Alt+6" = "switch_workspace_6"
+# "Ctrl+Alt+7" = "switch_workspace_7"
+# "Ctrl+Alt+8" = "switch_workspace_8"
+# "Ctrl+Alt+9" = "switch_workspace_9"
+
+# Move window directly to workspace
+# "Ctrl+Alt+Shift+1" = "move_to_workspace_1"
+# "Ctrl+Alt+Shift+2" = "move_to_workspace_2"
+# "Ctrl+Alt+Shift+3" = "move_to_workspace_3"
+# "Ctrl+Alt+Shift+4" = "move_to_workspace_4"
+# "Ctrl+Alt+Shift+5" = "move_to_workspace_5"
+# "Ctrl+Alt+Shift+6" = "move_to_workspace_6"
+# "Ctrl+Alt+Shift+7" = "move_to_workspace_7"
+# "Ctrl+Alt+Shift+8" = "move_to_workspace_8"
+# "Ctrl+Alt+Shift+9" = "move_to_workspace_9"
+
 
 [gestures]
-enabled = true
+# Touchpad gesture support
+enabled = false
 swipe_left = "focus_left"
 swipe_right = "focus_right"
 swipe_up = "focus_up"
 swipe_down = "focus_down"
 
+
 [snap_hints]
+# Visual snap hint overlays during resize
 enabled = true
 duration_ms = 200
 opacity = 128
 
+
 [animation]
-layout_duration_ms = 150
-workspace_switch_duration_ms = 200
-scroll_duration_ms = 200
-overview_duration_ms = 150
-easing = "ease_out"
+# Approximately twice as fast as the original settings.
+# 0 disables the corresponding animation.
+layout_duration_ms = 75
+workspace_switch_duration_ms = 150
+scroll_duration_ms = 100
+overview_duration_ms = 100
+easing = "ease_out" 
+
+# Skip animations while running on battery or Windows Power Saver.
 reduce_motion_on_battery = true
 
+
 [overview]
+# Workspace overview card rendering:
+# - "live"
+# - "snapshot"
+# - "placeholder"
+# render = "snapshot"
+
 
 [workspaces]
+# Optional display names for workspaces 1-9.
+# names = ["web", "code", "chat", "media"]
 
+
+# Firefox / Zen Picture-in-Picture windows draw square frames.
 [[window_rules]]
 match_class = "MozillaDialogClass"
 corner_style = "square"
+
+
+# Example application rules
+
+# [[window_rules]]
+# match_class = "Chrome_WidgetWin_1"
+# match_title = ".*DevTools.*"
+# action = "float"
+
+# [[window_rules]]
+# match_executable = "spotify.exe"
+# open_on_workspace = 5
+# column_width = 0.5
+# open_maximized = false
+
+# [[window_rules]]
+# match_executable = "chrome.exe"
+# open_in_column = 1
+
+# [[window_rules]]
+# match_executable = "slack.exe"
+# sticky = true
+

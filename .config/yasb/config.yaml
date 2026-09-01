@@ -33,7 +33,7 @@ bars:
     widgets:
       left: ["clock"]
       center: ["komorebi_workspaces"]
-      right: ["wifi", "battery", "volume", "bluetooth", "brightness", "update", "power_menu"]
+      right: ["claude_usage", "wifi", "battery", "volume", "bluetooth", "brightness", "update", "control_center", "power_menu"]
 widgets:
   media:
       type: "yasb.media.MediaWidget"
@@ -88,6 +88,47 @@ widgets:
         label_alt: "{%a, %d %b %H:%M:%S}"
         tooltip: false
         timezones: [] #Looking up time zone info from registry
+        callbacks:
+          on_left: "do_nothing"
+          on_middle: "do_nothing"
+          on_right: "do_nothing"
+  claude_usage:
+      type: "yasb.claude_usage.ClaudeUsageWidget"
+      options:
+        label: "<span>\udb81\udea9</span> {five_hour}%"
+        label_alt: "Claude 7d {seven_day}%"
+        update_interval: 60
+        cache_ttl: 120
+        tooltip: false
+        callbacks:
+          on_left: "toggle_menu"
+          on_middle: "refresh"
+          on_right: "toggle_label"
+        menu:
+          blur: true
+          round_corners: true
+          round_corners_type: "normal"
+          border_color: "System"
+          alignment: "right"
+          direction: "down"
+          offset_top: 6
+          offset_left: 0
+  control_center:
+      type: "yasb.control_center.ControlCenterWidget"
+      options:
+        label: "<span>\ue713</span>"
+        tooltip: false
+        popup:
+          blur: true
+          round_corners: true
+          round_corners_type: "normal"
+          border_color: "System"
+          alignment: "right"
+          direction: "down"
+          offset_top: 6
+          offset_left: 0
+        callbacks:
+          on_left: "toggle_menu"
   komorebi_workspaces:
       type: "komorebi.workspaces.WorkspaceWidget"
       options:

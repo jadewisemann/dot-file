@@ -24,6 +24,22 @@
     "style": "EaseOutSine"
   },
 
+  "manage_rules": [
+    {
+      "kind": "Title",
+      "id": "Claude",
+      "matching_strategy": "Equals"
+    }
+  ],
+
+  "ignore_rules": [
+    {
+      "kind": "Class",
+      "id": "IME",
+      "matching_strategy": "Equals"
+    }
+  ], 
+
   "stackbar": {
     "height": 25,
     "mode": "Never",
@@ -50,15 +66,7 @@
     },
     {
       "workspaces": [
-        {
-          "name": "1",
-          "layout": "Scrolling",
-          "layout_options": {
-            "scrolling": {
-              "columns": 2
-            }
-          }
-        },
+        { "name": "1", "layout": "BSP" },
         { "name": "2", "layout": "BSP" },
         { "name": "3", "layout": "BSP" },
         { "name": "4", "layout": "BSP" },
