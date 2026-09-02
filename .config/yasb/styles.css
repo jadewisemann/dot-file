@@ -235,8 +235,8 @@ QToolTip {
   max-width: 136px;
   padding: 1px 0 2px;
   color: var(--text-bright);
-  font-family: "Lilex Pyeojin KRX", sans-serif;
-  font-size: 13px;
+  font-family: "Lilex", monospace;
+  font-size: 16px;
   font-weight: 500;
 }
 

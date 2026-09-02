@@ -9,7 +9,7 @@
   "border_implementation": "Komorebi",
   "border_style": "System",
   "border_width": 6,
-  "border_offset": -2, 
+  "border_offset": -2,
   "border_colours": {
     "unfocused": "#eeeeee",
     "single": "#45475a",
