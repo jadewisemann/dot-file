@@ -1,31 +1,3 @@
-# 새로 설치된 앱 경로가 현재 프로세스에 아직 반영되지 않은 경우 보완합니다.
-$extraCommandPaths = @()
-$extraCommandPaths += (
-    [Environment]::GetEnvironmentVariable('Path', 'Machine') -split ';'
-)
-$extraCommandPaths += (
-    [Environment]::GetEnvironmentVariable('Path', 'User') -split ';'
-)
-$extraCommandPaths += @(
-    (Join-Path $env:LOCALAPPDATA 'Microsoft\WinGet\Links')
-    (Join-Path $env:LOCALAPPDATA 'Microsoft\WindowsApps')
-)
-$currentPathEntries = $env:Path -split ';'
-
-foreach ($commandPath in ($extraCommandPaths | Select-Object -Unique)) {
-    $commandPath = [Environment]::ExpandEnvironmentVariables(
-        $commandPath
-    )
-
-    if (
-        $commandPath -and
-        (Test-Path -LiteralPath $commandPath) -and
-        $commandPath -notin $currentPathEntries
-    ) {
-        $env:Path = "$env:Path;$commandPath"
-    }
-}
-
 # lsd
 function l { lsd -l $args }
 function la { lsd -a $args }
@@ -82,5 +54,8 @@ if (
     $env:TERM -ne 'dumb' -and
     -not [Console]::IsOutputRedirected
 ) {
-    Invoke-Expression (&starship init powershell)
+    Invoke-Expression (
+        &starship init powershell --print-full-init |
+            Out-String
+    )
 }
