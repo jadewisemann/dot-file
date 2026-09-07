@@ -30,6 +30,12 @@ function Backup-Target {
         return
     }
 
+    # Test-Path follows symbolic links. A dangling link has no content to back
+    # up, even though the link entry itself still needs to be replaced.
+    if (-not (Test-Path -LiteralPath $Target)) {
+        return
+    }
+
     $relativePath = [System.IO.Path]::GetRelativePath(
         $homeDir,
         $Target
@@ -109,6 +115,74 @@ function New-ParentDirectory {
     }
 }
 
+function Test-LinkedThroughAncestor {
+    param(
+        [Parameter(Mandatory)]
+        [string]$Source,
+
+        [Parameter(Mandatory)]
+        [string]$Target
+    )
+
+    $sourcePath = [System.IO.Path]::GetFullPath($Source)
+    $currentPath = Split-Path -Parent (
+        [System.IO.Path]::GetFullPath($Target)
+    )
+    $relativePath = Split-Path -Leaf $Target
+
+    while ($currentPath) {
+        $item = Get-Item `
+            -LiteralPath $currentPath `
+            -Force `
+            -ErrorAction SilentlyContinue
+
+        if (
+            $null -ne $item -and
+            $item.LinkType -in @('SymbolicLink', 'Junction')
+        ) {
+            $linkTarget = @($item.Target)[0]
+
+            if ($linkTarget) {
+                if ([System.IO.Path]::IsPathRooted($linkTarget)) {
+                    $linkedRoot = [System.IO.Path]::GetFullPath(
+                        $linkTarget
+                    )
+                }
+                else {
+                    $linkedRoot = [System.IO.Path]::GetFullPath(
+                        $linkTarget,
+                        $item.Parent.FullName
+                    )
+                }
+
+                $mappedPath = [System.IO.Path]::GetFullPath(
+                    (Join-Path $linkedRoot $relativePath)
+                )
+
+                if ($mappedPath -eq $sourcePath) {
+                    return $true
+                }
+            }
+        }
+
+        $leaf = Split-Path -Leaf $currentPath
+
+        if ($leaf) {
+            $relativePath = Join-Path $leaf $relativePath
+        }
+
+        $parentPath = Split-Path -Parent $currentPath
+
+        if (-not $parentPath -or $parentPath -eq $currentPath) {
+            break
+        }
+
+        $currentPath = $parentPath
+    }
+
+    return $false
+}
+
 function Install-Link {
     param(
         [Parameter(Mandatory)]
@@ -124,10 +198,20 @@ function Install-Link {
 
     New-ParentDirectory -Path $Target
 
-    if (Test-Path -LiteralPath $Target) {
-        $item = Get-Item `
-            -LiteralPath $Target `
-            -Force
+    if (Test-LinkedThroughAncestor -Source $Source -Target $Target) {
+        Write-Host "already linked through parent: $Target -> $Source"
+        return
+    }
+
+    # Get-Item can see a dangling symbolic link whereas Test-Path reports it
+    # as missing. Detect the directory entry itself so repair runs can remove
+    # stale links before recreating them.
+    $item = Get-Item `
+        -LiteralPath $Target `
+        -Force `
+        -ErrorAction SilentlyContinue
+
+    if ($null -ne $item) {
 
         $alreadyLinked = (
             $item.LinkType -eq 'SymbolicLink' -and
