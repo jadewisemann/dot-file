@@ -1,6 +1,6 @@
 # Windows dotfiles
 
-macOS에서 Ghostty만 복원하려면 [Ghostty 환경 복원 가이드](README.ghostty.md)를 참고하세요.
+macOS에서 Ghostty·Omni WM·공용 테마·폰트·셸 설정을 복원하려면 [macOS 환경 복원 가이드](README.ghostty.md)를 참고하세요.
 
 Windows 11에서 PowerShell, Windows Terminal, YASB와 세 가지 타일링 창 관리자의 설정을 한 번에 준비하는 저장소입니다. 설치 스크립트는 필요한 프로그램과 PowerShell 모듈, Nerd Font를 설치한 뒤 저장소의 설정 파일을 사용자 홈에 심볼릭 링크로 연결합니다.
 
