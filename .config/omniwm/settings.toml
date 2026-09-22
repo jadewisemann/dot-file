@@ -7,15 +7,37 @@ schemaVersion = 3
 
 [appearance]
 mode = "light"
+tabRailAppIcons = false
 
 [borders]
 enabled = true
-width = 5.0
+width = 2.0
 
 [borders.color]
 alpha = 1.0
+blue = 0.687654435634613
+green = 0.6239904165267944
+red = 0.001226420747116208
+
+[borders.glow]
+enabled = true
+opacity = 0.6
+radius = 12.0
+
+[borders.gradient]
+direction = "topLeftToBottomRight"
+enabled = false
+
+[borders.gradient.end]
+alpha = 1.0
+blue = 0.7
+green = 1.0
+red = 0.0
+
+[borders.gradient.start]
+alpha = 1.0
 blue = 1.0
-green = 0.8509803921568627
+green = 0.4
 red = 0.0
 
 [clipboard]
@@ -56,7 +78,7 @@ animationsEnabled = true
 defaultLayoutType = "niri"
 hotkeysEnabled = true
 hyperKeyModifiers = "Control+Option+Shift+Command"
-ipcEnabled = false
+ipcEnabled = true
 preventSleepEnabled = false
 systemHyperTrigger = "None"
 updateChecksEnabled = true
@@ -66,10 +88,17 @@ fingerCount = 3
 invertDirection = true
 mouseMoveModifierKey = "option"
 mouseResizeModifierKey = "option"
+overviewGestureEnabled = false
+overviewGestureFingerCount = 4
 scrollEnabled = false
 scrollModifierKey = "optionShift"
 scrollSensitivity = 5.0
 trackpadScrollStyle = "snap"
+windowGestureSensitivity = 1.0
+windowMoveEnabled = false
+windowMoveFingerCount = 4
+windowResizeEnabled = false
+windowResizeFingerCount = 3
 workspaceSwipeAxis = "vertical"
 workspaceSwipeEnabled = false
 workspaceSwipeFingerCount = 3
@@ -85,16 +114,18 @@ enabled = false
 margin = 1
 
 [niri]
-alwaysCenterSingleColumn = false
-centerFocusedColumn = "never"
-containerPrimarySpanPresets = [0.5, 0.667, 1.0]
-defaultContainerPrimarySpan = 0.667
+alwaysCenterSingleColumn = true
+centerFocusedColumn = "onOverflow"
+containerPrimarySpanPresets = [0.5, 0.667, 1.0, 0.33]
 infiniteLoop = false
 singleWindowFit = "fill"
-visibleContainerCount = 2
+visibleContainerCount = 3
 
 [overview]
-zoom = 1.0
+invertScrollDirection = false
+matchFocusBorder = true
+mouseScrollSpeed = 1.0
+zoom = 0.8
 
 [overview.backdrop]
 alpha = 1.0
@@ -161,9 +192,13 @@ position = "overlappingMenuBar"
 reserveLayoutSpace = false
 revealHoldMilliseconds = 200.0
 revealModifier = "off"
+showAccentHighlights = true
 showFloatingWindows = true
+showItemBackgrounds = true
 showLabels = true
+solidBlackBackground = false
 systemStatsButton = false
+transparentBackground = false
 windowLevel = "popup"
 xOffset = 0.0
 yOffset = -4.0
@@ -329,23 +364,23 @@ binding = "Unassigned"
 id = "assignFocusedWindowToScratchpad.10"
 
 [[hotkeys]]
-binding = "Option+Command+1"
+binding = "Unassigned"
 id = "switchWorkspace.0"
 
 [[hotkeys]]
-binding = "Option+Shift+Command+1"
+binding = "Unassigned"
 id = "moveToWorkspace.0"
 
 [[hotkeys]]
-binding = "Option+Command+2"
+binding = "Unassigned"
 id = "switchWorkspace.1"
 
 [[hotkeys]]
-binding = "Option+Shift+Command+2"
+binding = "Unassigned"
 id = "moveToWorkspace.1"
 
 [[hotkeys]]
-binding = "Option+Command+3"
+binding = "Unassigned"
 id = "switchWorkspace.2"
 
 [[hotkeys]]
@@ -477,11 +512,11 @@ binding = "Unassigned"
 id = "workspaceBackAndForth"
 
 [[hotkeys]]
-binding = "Option+M"
+binding = "Option+K"
 id = "switchWorkspace.next"
 
 [[hotkeys]]
-binding = "Option+Comma"
+binding = "Option+L"
 id = "switchWorkspace.previous"
 
 [[hotkeys]]
@@ -489,11 +524,11 @@ binding = "Option+J"
 id = "focus.left"
 
 [[hotkeys]]
-binding = "Option+K"
+binding = "Unassigned"
 id = "focus.down"
 
 [[hotkeys]]
-binding = "Option+L"
+binding = "Unassigned"
 id = "focus.up"
 
 [[hotkeys]]
@@ -545,11 +580,11 @@ binding = "Unassigned"
 id = "centerVisibleColumns"
 
 [[hotkeys]]
-binding = "Option+Shift+Comma"
+binding = "Option+Shift+L"
 id = "moveWindowToWorkspaceUp"
 
 [[hotkeys]]
-binding = "Option+Shift+M"
+binding = "Option+Shift+K"
 id = "moveWindowToWorkspaceDown"
 
 [[hotkeys]]
@@ -597,19 +632,19 @@ binding = "Unassigned"
 id = "moveColumnToWorkspace.8"
 
 [[hotkeys]]
-binding = "Option+Shift+J"
+binding = "Unassigned"
 id = "move.left"
 
 [[hotkeys]]
-binding = "Option+Shift+K"
+binding = "Unassigned"
 id = "move.down"
 
 [[hotkeys]]
-binding = "Option+Shift+L"
+binding = "Unassigned"
 id = "move.up"
 
 [[hotkeys]]
-binding = "Option+Shift+P"
+binding = "Unassigned"
 id = "move.right"
 
 [[hotkeys]]
@@ -681,7 +716,7 @@ binding = "Option+Command+Slash"
 id = "moveWindowToMonitor.down"
 
 [[hotkeys]]
-binding = "Option+I"
+binding = "Option+Control+L"
 id = "toggleFullscreen"
 
 [[hotkeys]]
@@ -689,11 +724,11 @@ binding = "Unassigned"
 id = "toggleNativeFullscreen"
 
 [[hotkeys]]
-binding = "Option+N"
+binding = "Option+Shift+J"
 id = "moveColumn.left"
 
 [[hotkeys]]
-binding = "Option+Period"
+binding = "Option+Shift+P"
 id = "moveColumn.right"
 
 [[hotkeys]]
