@@ -283,6 +283,48 @@ id = "552FB77D-BF0E-4737-90A6-B5BC6986C579"
 minHeight = 320.0
 minWidth = 660.0
 
+[[appRules]]
+axSubrole = "AXStandardWindow"
+bundleId = "com.apple.systempreferences"
+id = "4DF46166-A36B-4ED1-B7E2-A2AD34559736"
+layout = "tile"
+
+[[appRules]]
+axSubrole = "AXStandardWindow"
+bundleId = "com.apple.iphonesimulator"
+id = "7E6EA38B-3901-4DE3-A90D-FB678B4E8507"
+layout = "tile"
+
+[[appRules]]
+axSubrole = "AXStandardWindow"
+bundleId = "com.apple.PhotoBooth"
+id = "9FCC0C9B-78B6-4D78-BA6E-C9DE77B4560D"
+layout = "tile"
+
+[[appRules]]
+axSubrole = "AXStandardWindow"
+bundleId = "com.apple.calculator"
+id = "7B02D364-DC1F-4E9F-8141-7E9177819D93"
+layout = "tile"
+
+[[appRules]]
+axSubrole = "AXStandardWindow"
+bundleId = "com.apple.ScreenSharing"
+id = "BB6C9CE8-5496-415C-9DC1-0BCE8700E229"
+layout = "tile"
+
+[[appRules]]
+axSubrole = "AXStandardWindow"
+bundleId = "com.apple.remotedesktop"
+id = "95AAC8A3-59AE-4B48-A566-729CBDD3D604"
+layout = "tile"
+
+[[appRules]]
+axSubrole = "AXStandardWindow"
+bundleId = "com.itoolab.unlockgo"
+id = "34141126-0C99-44B7-A9DC-5F88B4B48C02"
+layout = "tile"
+
 [[hotkeys]]
 binding = "Unassigned"
 id = "toggleScratchpad.1"
@@ -664,11 +706,11 @@ binding = "Unassigned"
 id = "moveWindowUpOrToWorkspaceUp"
 
 [[hotkeys]]
-binding = "Option+Command+Period"
+binding = "Unassigned"
 id = "consumeWindowIntoColumn"
 
 [[hotkeys]]
-binding = "Option+Shift+Period"
+binding = "Unassigned"
 id = "expelWindowFromColumn"
 
 [[hotkeys]]
@@ -748,7 +790,7 @@ binding = "Option+Shift+Command+End"
 id = "moveColumnToLast"
 
 [[hotkeys]]
-binding = "Option+O"
+binding = "Unassigned"
 id = "toggleColumnTabbed"
 
 [[hotkeys]]
@@ -884,11 +926,11 @@ binding = "Unassigned"
 id = "cycleWindowPrimarySpanBackward"
 
 [[hotkeys]]
-binding = "Option+Command+L"
+binding = "Unassigned"
 id = "cycleWindowSecondarySpanForward"
 
 [[hotkeys]]
-binding = "Option+Command+K"
+binding = "Unassigned"
 id = "cycleWindowSecondarySpanBackward"
 
 [[hotkeys]]
@@ -1000,7 +1042,7 @@ binding = "Unassigned"
 id = "rescueOffscreenWindows"
 
 [[hotkeys]]
-binding = "Option+U"
+binding = "Unassigned"
 id = "toggleFocusedWindowFloating"
 
 [[hotkeys]]
@@ -1020,7 +1062,7 @@ binding = "Unassigned"
 id = "toggleHiddenBarPanel"
 
 [[hotkeys]]
-binding = "Option+Y"
+binding = "Option+I"
 id = "toggleQuakeTerminal"
 
 [[hotkeys]]
@@ -1028,7 +1070,7 @@ binding = "Unassigned"
 id = "toggleWorkspaceLayout"
 
 [[hotkeys]]
-binding = "Option+H"
+binding = "Option+O"
 id = "toggleOverview"
 
 [[hotkeys]]
