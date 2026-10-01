@@ -1,0 +1,13 @@
+[hotkeys]
+"Alt+U" = "hints --action left_click --toggle"
+"Alt+Shift+U" = "hints --action right_click --toggle"
+"Primary+Shift+S" = "__disabled__"
+
+[grid]
+enabled = false
+
+[recursive_grid]
+enabled = false
+
+[bisect]
+enabled = false
