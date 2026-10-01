@@ -1,7 +1,8 @@
 [hotkeys]
-"Alt+U" = "hints --action left_click --toggle"
-"Alt+Shift+U" = "hints --action right_click --toggle"
+"Alt+U" = ["action hide_cursor", "hints --action left_click --toggle", "action wait_for_mode_exit", "action show_cursor"]
+"Alt+Shift+U" = ["action hide_cursor", "hints --action right_click --toggle", "action wait_for_mode_exit", "action show_cursor"]
 "Primary+Shift+S" = "__disabled__"
+"Primary+Shift+Space" = "__disabled__"
 
 [grid]
 enabled = false
