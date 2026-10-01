@@ -11,7 +11,7 @@ tabRailAppIcons = false
 
 [borders]
 enabled = true
-width = 2.0
+width = 2.5
 
 [borders.color]
 alpha = 1.0
@@ -42,6 +42,7 @@ red = 0.0
 
 [clipboard]
 historyEnabled = false
+ignoredTypes = []
 maxItemBytes = 8388608
 maxItems = 200
 maxTotalBytes = 67108864
@@ -74,7 +75,7 @@ right = 20.0
 top = 18.0
 
 [general]
-animationsEnabled = true
+animationsEnabled = false
 defaultLayoutType = "niri"
 hotkeysEnabled = true
 hyperKeyModifiers = "Control+Option+Shift+Command"
@@ -88,9 +89,9 @@ fingerCount = 3
 invertDirection = true
 mouseMoveModifierKey = "option"
 mouseResizeModifierKey = "option"
-overviewGestureEnabled = false
+overviewGestureEnabled = true
 overviewGestureFingerCount = 4
-scrollEnabled = false
+scrollEnabled = true
 scrollModifierKey = "optionShift"
 scrollSensitivity = 5.0
 trackpadScrollStyle = "snap"
@@ -100,11 +101,11 @@ windowMoveFingerCount = 4
 windowResizeEnabled = false
 windowResizeFingerCount = 3
 workspaceSwipeAxis = "vertical"
-workspaceSwipeEnabled = false
+workspaceSwipeEnabled = true
 workspaceSwipeFingerCount = 3
 
 [hiddenBar]
-enabled = true
+enabled = false
 hiddenBundleIDs = []
 rehideIntervalSeconds = 5.0
 
@@ -118,7 +119,7 @@ alwaysCenterSingleColumn = true
 centerFocusedColumn = "onOverflow"
 containerPrimarySpanPresets = [0.5, 0.667, 1.0, 0.33]
 infiniteLoop = false
-singleWindowFit = "fill"
+singleWindowFit = "container_primary_span"
 visibleContainerCount = 3
 
 [overview]
@@ -128,10 +129,10 @@ mouseScrollSpeed = 1.0
 zoom = 0.8
 
 [overview.backdrop]
-alpha = 1.0
-blue = 0.08
-green = 0.05
-red = 0.05
+alpha = 0.5
+blue = 0.14394915103912354
+green = 0.09105797111988068
+red = 0.09004120528697968
 
 [overview.windowBorders]
 
@@ -718,7 +719,7 @@ binding = "Option+Shift+I"
 id = "focusMonitorNext"
 
 [[hotkeys]]
-binding = "Option+Shift+U"
+binding = "Unassigned"
 id = "focusMonitorPrevious"
 
 [[hotkeys]]
@@ -758,7 +759,7 @@ binding = "Option+Command+Slash"
 id = "moveWindowToMonitor.down"
 
 [[hotkeys]]
-binding = "Option+Control+L"
+binding = "Control+Option+L"
 id = "toggleFullscreen"
 
 [[hotkeys]]
